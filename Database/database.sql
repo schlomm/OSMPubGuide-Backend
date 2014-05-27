@@ -1,0 +1,40 @@
+DROP TABLE pub;
+DROP TABLE event;
+DROP TABLE interval;
+DROP TABLE seasonal;
+
+CREATE TABLE pub(
+pub_id SERIAL NOT NULL,
+PRIMARY KEY (pub_id)
+);
+
+CREATE TABLE event(
+event_id SERIAL NOT NULL,
+name TEXT NOT NULL,
+open BOOLEAN,
+PRIMARY KEY (event_id),
+FOREIGN KEY (pub_id) REFERENCES pub
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+);
+
+CREATE TABLE interval(
+interval_id SERIAL NOT NULL,
+periodic
+start TIMESTAMP,
+end TIMESTAMP,
+PRIMARY KEY (interval_id),
+FOREIGN KEY (event_id) REFERENCES event
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+);
+
+CREATE TABLE seasonal(
+seasonal_id SERIAL NOT NULL,
+start_seasonal TIMESTAMP,
+end_seasonal TIMESTAMP,
+PRIMARY KEY (seasonal_id),
+FOREIGN KEY (event_id) REFERENCES event
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+);
