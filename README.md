@@ -1,6 +1,6 @@
 OSMPubGuide-Backend
 =======
-This repository is used to create an OSM based Pubguide, which deals with the aspects of an integration of temporal data. A customized API will be established, which will be used to provide additional, use case adapated information
+This repository is used to create an OSM based Pubguide, which deals with the aspects of an integration of temporal data. A customized API will be established, which will be used to provide additional, use case adapated information. On top of that, those temporal information should be stored within a database, which should be related to up-to-date OSM based information. A TileServer will serve Tiles, which focusses on specific entities.
 
 ----------
 
