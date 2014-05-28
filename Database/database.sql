@@ -44,17 +44,16 @@ FOREIGN KEY (event_id) REFERENCES temporal_event
 	ON UPDATE CASCADE
 );
 
--- Test: SELECT is_open(5,'2001-02-16');
 CREATE FUNCTION is_open(p_id integer, ts timestamp) RETURNS BOOLEAN AS $$
 	DECLARE result BOOLEAN := FALSE;
 	DECLARE number integer;
 	BEGIN
 	 SELECT COUNT(event_id) INTO number FROM pub NATURAL INNER JOIN temporal_event NATURAL INNER JOIN opened WHERE pub.pub_id = p_id AND (ts BETWEEN opened.start_opened AND opened.end_opened);
-	 IF number = 0
+	 IF number != 0
 	    THEN result := TRUE;
 	 END IF;
 	 SELECT COUNT(event_id) INTO number FROM pub NATURAL INNER JOIN temporal_event NATURAL INNER JOIN closed WHERE pub.pub_id = p_id AND (ts BETWEEN closed.start_closed AND closed.end_closed);
-	 IF number = 0
+	 IF number != 0
 		THEN result := FALSE;
 	 END IF;
 	 RETURN result;
