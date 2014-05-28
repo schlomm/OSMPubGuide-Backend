@@ -29,10 +29,10 @@ This repository is used to create an OSM based Pubguide, which deals with the as
  - Check Sprint Backlog for detailed Tasks, Task-Assignments and User Stories [(click me)][15]
  - Deliverables: 
      - System mockup
-     - Documentation of decisions (Check Sprint Backlog)
-     - Use Case adapted API to provide additional information (temporal information)
-     - Use Case adapted database to store temporal information
-     - Use Case adapted Tile Service, which focusses on important entities
+     - Documentation of decisions and components (Check Sprint Backlog)
+     - Use Case adapted API to provide additional information (temporal information). The API will also be able to query OSM data using the Overpass API.
+     - Use Case adapted database to store temporal information.
+     - Use Case adapted Tile Services, which focusses on meaningful and useful entities.
 
  
 ### Documents
@@ -46,7 +46,7 @@ This repository is used to create an OSM based Pubguide, which deals with the as
 
 
 ### Architecture-Draft
-![enter image description here][16]
+![System Overview][16]
 
 ----------
 
