@@ -76,10 +76,10 @@ This repository is used to create an OSM based Pubguide, which deals with the as
 
  - Scrum Master: Dominik 
  - Goals:
-     - Conceptional work (Visualization concept, database schema, API)
+     - Conceptional work (Visualization concept, database schema, API concept)
      - Plans and detailed preparation
-     - First rough prototypes (first implementation
-   phase)
+     - First rough prototypes (first implementation phase)
+     - Server infrastructure
 
  
 
