@@ -14,7 +14,7 @@ This repository is used to create an OSM based Pubguide, which deals with the as
  - [Christopher: ChristopherStephan][6]
  - [Ondrej: zvaraondrej][7]
  - [Florian: froehr][8]
- - Tobias
+ - [Tobias: TobiVanKenobi][]
 
 ### Grouping
 
@@ -102,3 +102,4 @@ This repository is used to create an OSM based Pubguide, which deals with the as
   [15]: https://docs.google.com/spreadsheet/ccc?key=0AjGDgpE0LC_sdGlNcUZwaXBmS2lzeHdlaXE5MHdzNmc&usp=drive_web#gid=1
   [16]: http://i.imgur.com/ycafHU6.png
   [17]: https://github.com/MarkusKonk/OSMPubGuide
+  [18]: https://github.com/tobivankenobi
