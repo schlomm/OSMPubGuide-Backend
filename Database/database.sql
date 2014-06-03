@@ -15,6 +15,7 @@ CREATE TABLE temporal_event(
 event_id SERIAL NOT NULL,
 pub_id SERIAL NOT NULL,
 name TEXT NOT NULL,
+type TEXT,
 description TEXT,
 PRIMARY KEY (event_id),
 FOREIGN KEY (pub_id) REFERENCES pub
