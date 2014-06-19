@@ -82,6 +82,16 @@ This repository is used to create an OSM based Pubguide, which deals with the as
      - First rough prototypes (first implementation phase)
      - Server infrastructure
 
+## 2. Sprint: 11.06.2014 -  01.07.2014 ####	
+**Organization**:
+
+ - Scrum Master: Dominik 
+ - Goals:
+     - Implementation Phase (Extending API Prototype, Tile Server, Database)
+     - API: Extending Prototype with more functionalities
+     - Tile Server: Instance of an own Tile Server with own style.
+     - Database: Function to handle operations on server side.
+
  
 
 
