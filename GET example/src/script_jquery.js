@@ -7,11 +7,13 @@ function request_jquery(url) {
 		success : function (data) {
 			console.log("Successfully queried API!");
 			console.log(data);
+			alert("Works with jquery $.ajax :)");
 
 		},
 
 		error : function (data) {
 			console.log("An error occurred while processing XML file.");
+			alert("Did not work with jquery $.ajax :(");
 		}
 	});
 };
