@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="osm" type="osmType"/>
+    <xs:complexType name="osmBaseType">
+        <xs:attribute type="xs:long" name="id" use="required"/>
+        <xs:attribute type="xs:boolean" name="visible" use="optional"/>
+        <xs:attribute type="xs:long" name="version" use="optional"/>
+        <xs:attribute type="xs:long" name="changeset" use="optional"/>
+        <xs:attribute type="xs:dateTime" name="timestamp" use="optional"/>
+        <xs:attribute type="xs:string" name="user" use="optional"/>
+        <xs:attribute type="xs:long" name="uid" use="optional"/>
+    </xs:complexType>
+  <xs:complexType name="boundsType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:float" name="minlat"/>
+        <xs:attribute type="xs:float" name="minlon"/>
+        <xs:attribute type="xs:float" name="maxlat"/>
+        <xs:attribute type="xs:float" name="maxlon"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="nodeType" mixed="true">
+    <xs:complexContent>
+        <xs:extension base="osmBaseType">
+            <xs:sequence>
+                <xs:element type="tagType" name="tag" maxOccurs="unbounded" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute type="xs:float" name="lat" use="required"/>
+            <xs:attribute type="xs:float" name="lon" use="required"/>
+        </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="tagType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="k" use="required"/>
+        <xs:attribute type="xs:string" name="v" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ndType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:long" name="ref" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="wayType">
+    <xs:complexContent>
+        <xs:extension base="osmBaseType">
+            <xs:sequence>
+                <xs:element type="tagType" name="tag" maxOccurs="unbounded" minOccurs="0"/>
+                <xs:element type="ndType" name="nd" maxOccurs="unbounded" minOccurs="2"/>
+            </xs:sequence>
+        </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+    <xs:complexType name="memberType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="relationReferType" name="type" use="required"/>
+                <xs:attribute type="xs:long" name="ref" use="required"/>
+                <xs:attribute type="xs:string" name="role" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+  <xs:complexType name="relationType">
+        <xs:complexContent>
+            <xs:extension base="osmBaseType">
+                <xs:sequence>
+                    <xs:element type="tagType" name="tag" maxOccurs="unbounded" minOccurs="0"/>
+                    <xs:element type="memberType" name="member" maxOccurs="unbounded" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+	</xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="eventType">
+      <xs:complexContent>
+          <xs:extension base="osmBaseType">
+              <xs:sequence>
+                  <xs:element type="tagType" name="tag" maxOccurs="unbounded" minOccurs="0"/>
+              </xs:sequence>
+              <xs:attribute type="xs:dateTime" name="start" use="required"/>
+              <xs:attribute type="xs:dateTime" name="end" use="optional" />
+          </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="relationReferType">
+      <xs:restriction base="xs:string">
+          <xs:enumeration value="node" />
+          <xs:enumeration value="way" />
+          <xs:enumeration value="relation" />
+          <xs:enumeration value="event" />
+      </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="osmType">
+    <xs:sequence>
+      <xs:element type="boundsType" name="bounds"/>
+      <xs:element type="nodeType" name="node" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="wayType" name="way" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="relationType" name="relation" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="eventType" name="event" maxOccurs="unbounded" minOccurs="0" />
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="version"/>
+    <xs:attribute type="xs:string" name="generator"/>
+    <xs:attribute type="xs:string" name="copyright"/>
+    <xs:attribute type="xs:anyURI" name="attribution"/>
+    <xs:attribute type="xs:anyURI" name="license"/>
+  </xs:complexType>
+</xs:schema>

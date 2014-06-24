@@ -13,7 +13,7 @@ This repository is used to create an OSM based Pubguide, which deals with the as
  - [Stephanie: StephanieWalter][5]
  - [Christopher: ChristopherStephan][6]
  - [Ondrej: zvaraondrej][7]
- - [Florian: froehr][8]
+ - [Florian: flahn][8]
  - [Tobias: TobiVanKenobi][18]
 
 ### Grouping

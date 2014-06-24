@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="osm-script" type="osm-scriptType"/>
+  <xs:complexType name="has-kvType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="k" use="required"/>
+        <xs:attribute type="xs:string" name="v" use="optional"/>
+        <xs:attribute type="xs:string" name="regv" use="optional"/>
+        <xs:attribute type="xs:string" name="modv" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="bbox-queryType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:float" name="e" use="required"/>
+        <xs:attribute type="xs:float" name="n" use="required"/>
+        <xs:attribute type="xs:float" name="s" use="required"/>
+        <xs:attribute type="xs:float" name="w" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="queryType" mixed="true">
+    <xs:sequence>
+      <xs:element type="aroundType" name="around" minOccurs="0"/>
+      <xs:element type="has-kvType" name="has-kv" minOccurs="0"/>
+      <xs:element type="bbox-queryType" name="bbox-query" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="queryOSMType" name="type" use="required"/>
+    <xs:attribute type="xs:string" name="into" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="aroundType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:int" name="radius" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="recurseType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="recurseTypeType" name="type" use="required"/>
+        <xs:attribute type="xs:string" name="into" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="unionType">
+    <xs:sequence maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="itemType" name="item" minOccurs="0"/>
+      <xs:element type="recurseType" name="recurse" minOccurs="0"/>
+      <xs:element type="queryType" name="query" minOccurs="0"/>
+      <xs:element type="bbox-queryType" name="bbox-query" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="into" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="itemType">
+    <xs:attribute type="xs:string" name="set" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="id-queryType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:int" name="ref" use="required"/>
+        <xs:attribute type="xs:string" name="type" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="printType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:int" name="limit" use="optional"/>
+        <xs:attribute type="printModeType" name="mode" use="optional"/>
+        <xs:attribute type="xs:string" name="order" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+	<xs:simpleType name="queryOSMType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="node"/>
+			<xs:enumeration value="way"/>
+			<xs:enumeration value="relation"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="recurseTypeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="node-way"/>
+			<xs:enumeration value="node-relation"/>
+			<xs:enumeration value="way-node"/>
+			<xs:enumeration value="way-relation"/>
+			<xs:enumeration value="relation-way"/>
+			<xs:enumeration value="relation-node"/>
+			<xs:enumeration value="up"/>
+			<xs:enumeration value="down"/>
+			<xs:enumeration value="relation-backwards"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="printModeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="meta"/>
+			<xs:enumeration value="skeleton"/>
+			<xs:enumeration value="ids_only"/>
+			<xs:enumeration value="body"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="outputType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="json"/>
+			<xs:enumeration value="xml"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <xs:complexType name="osm-scriptType">
+    <xs:sequence>
+      <xs:element type="queryType" name="query" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="unionType" name="union" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="id-queryType" name="id-query"/>
+      <xs:element type="printType" name="print" minOccurs="1"/>
+    </xs:sequence>
+	<xs:attribute type="outputType" name="output" use="optional"/>
+  </xs:complexType>
+</xs:schema>
