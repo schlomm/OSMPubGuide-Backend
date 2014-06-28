@@ -39,9 +39,9 @@ public class Pubs {
 	/**
 	 * 
 	 * Example requests: 
-	 * http://localhost:8080/OSMPubGuide-WS/request/pubs/getpubswithinbbox
-	 * http://localhost:8080/OSMPubGuide-WS/request/pubs/getpubswithinbbox?south=41.886288445510516&west=12.483901977539062&north=41.893700240146295&east=12.500102519989014
-	 * http://localhost:8080/OSMPubGuide-WS/request/pubs/getpubswithinbbox?south=51.948920578035946&west=7.58803367614746&north=51.97335506954467&east=7.659530639648438
+	 * http://localhost:8080/OSMPubGuide-WS/tosm/pubs/getpubswithinbbox
+	 * http://localhost:8080/OSMPubGuide-WS/tosm/pubs/getpubswithinbbox?south=41.886288445510516&west=12.483901977539062&north=41.893700240146295&east=12.500102519989014
+	 * http://localhost:8080/OSMPubGuide-WS/tosm/pubs/getpubswithinbbox?south=51.948920578035946&west=7.58803367614746&north=51.97335506954467&east=7.659530639648438
 	 * 
 	 * @param south: south boundary
 	 * @param west:

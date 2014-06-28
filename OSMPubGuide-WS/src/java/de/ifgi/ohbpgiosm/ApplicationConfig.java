@@ -13,7 +13,7 @@ import javax.ws.rs.core.Application;
  *
  * @author florian
  */
-@javax.ws.rs.ApplicationPath("request")
+@javax.ws.rs.ApplicationPath("tosm")
 public class ApplicationConfig extends Application {
 
     @Override
@@ -32,6 +32,7 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(de.ifgi.ohbpgiosm.Hello.class);
         resources.add(de.ifgi.ohbpgiosm.Pubs.class);
+        resources.add(de.ifgi.ohbpgiosm.QueryResource.class);
     }
     
 }
