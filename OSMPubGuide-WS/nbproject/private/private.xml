@@ -5,10 +5,12 @@
         <group>
             <file>file:/C:/Users/florian/Documents/GitHub/OSMPubGuide-Backend/OSMPubGuide-WS/src/java/de/ifgi/ohbpgiosm/QueryType.java</file>
             <file>file:/C:/Users/florian/Documents/GitHub/OSMPubGuide-Backend/OSMPubGuide-WS/src/java/de/ifgi/ohbpgiosm/QueryResource.java</file>
-            <file>file:/C:/Users/florian/Documents/GitHub/OSMPubGuide-Backend/OSMPubGuide-WS/src/java/de/ifgi/ohbpgiosm/util/BoundingBox.java</file>
+            <file>file:/C:/Users/florian/Documents/GitHub/OSMPubGuide-Backend/OSMPubGuide-WS/src/java/de/ifgi/ohbpgiosm/Connector.java</file>
             <file>file:/C:/Users/florian/Documents/GitHub/OSMPubGuide-Backend/OSMPubGuide-WS/src/java/de/ifgi/ohbpgiosm/util/QueryCreator.java</file>
-            <file>file:/C:/Users/florian/Documents/GitHub/OSMPubGuide-Backend/OSMPubGuide-WS/src/java/de/ifgi/ohbpgiosm/Pubs.java</file>
+            <file>file:/C:/Users/florian/Documents/GitHub/OSMPubGuide-Backend/OSMPubGuide-WS/src/java/de/ifgi/ohbpgiosm/ResponseMerger.java</file>
             <file>file:/C:/Users/florian/Documents/GitHub/OSMPubGuide-Backend/OSMPubGuide-WS/src/java/de/ifgi/ohbpgiosm/Query.java</file>
+            <file>file:/C:/Users/florian/Documents/GitHub/OSMPubGuide-Backend/OSMPubGuide-WS/src/java/de/ifgi/ohbpgiosm/ApplicationConfig.java</file>
+            <file>file:/C:/Users/florian/Documents/GitHub/OSMPubGuide-Backend/OSMPubGuide-WS/src/java/de/ifgi/ohbpgiosm/Parameter.java</file>
         </group>
     </open-files>
 </project-private>
