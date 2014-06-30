@@ -6,7 +6,7 @@
 
 package de.ifgi.ohbpgiosm.database;
 
-import de.ifgi.ohbgiosm.logging.MyLogger;
+import de.ifgi.ohbpgiosm.logging.MyLogger;
 import java.sql.*;
 import org.apache.log4j.*;
 
