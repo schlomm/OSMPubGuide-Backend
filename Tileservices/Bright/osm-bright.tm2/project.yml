@@ -1,0 +1,29 @@
+_prefs: 
+  baselayer: ''
+  saveCenter: true
+_properties: 
+  bridge: 
+    "group-by": layer
+attribution: "<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> <a class='mapbox-improve-map' href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>"
+bounds: 
+  - -180
+  - -85.0511
+  - 180
+  - 85.0511
+center: 
+  - 7.618758380413055
+  - 51.96610081736624
+  - 19
+description: ''
+format: "png8:m=h"
+interactivity_layer: aeroway
+layers: null
+maxzoom: 22
+minzoom: 0
+name: osm-bright
+source: "mapbox:///mapbox.mapbox-streets-v5"
+styles: 
+  - style.mss
+  - road.mss
+  - labels.mss
+template: ''
