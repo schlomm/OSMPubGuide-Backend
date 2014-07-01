@@ -50,6 +50,7 @@ public class QueryCreator {
         Query<Parameter,List<Object>> space = new Query<>(QueryType.SPATIAL);
         Query<Parameter,List<Object>> time = new Query<>(QueryType.TEMPORAL);
         Query<Parameter,List<Object>> attribute = new Query<>(QueryType.ATTRIBUTAL);
+        Query<Parameter,List<Object>> db_attr = new Query<>(QueryType.ATTRIBUTAL);
         Query<Parameter,List<Object>> eventAttr = new Query<>(QueryType.EVENT);
         
         
@@ -72,12 +73,27 @@ public class QueryCreator {
                     break;
                 case FILTER:
                     String[] temp2 = value.split(this.LIST_SEPARATOR);
-                    ArrayList<Object> list2 = new ArrayList<>();
+                    ArrayList<Object> overpass_attr_list = new ArrayList<>();
+                    ArrayList<Object> db_attr_list = new ArrayList<>();
                     
                     for (int i = 0; i < temp2.length; i++) {
-                        list2.add(temp2[i]);
+                        switch (temp2[i].split("=")[0]) {
+                            case "maximumBeerPrice":
+                            case "hasEntryFee":
+                            case "hasHappyHour":
+                                db_attr_list.add(temp2[i]);
+                                break;
+                            default:
+                                overpass_attr_list.add(temp2[i]);
+                                break;
+                        }
                     }
-                    attribute.put(key, list2);
+                    if (overpass_attr_list.size() > 0) {
+                        attribute.put(key, overpass_attr_list);
+                    }
+                    if (db_attr_list.size() > 0) {
+                        db_attr.put(key, db_attr_list);
+                    }
                     break;
                 case EVENT_FILTER:
                     String[] temp3 = value.split(this.LIST_SEPARATOR);
