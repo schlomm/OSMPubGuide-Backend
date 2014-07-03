@@ -37,11 +37,11 @@ public class OverpassConnector extends Connector {
     public OverpassConnector() {
     }
 
-    
     /**
-     * Method to be called when Connector.sendRequest is called 
-     * Composes the OSM API script and and sends the actual request
-     * Stores internally the response.
+     * Method to be called when Connector.sendRequest is called Composes the OSM
+     * API script and and sends the actual request Stores internally the
+     * response.
+     *
      * @return void
      */
     @Override
@@ -50,8 +50,8 @@ public class OverpassConnector extends Connector {
         opts.setCharacterEncoding("UTF-8");
 
         OsmScriptDocument osd = OsmScriptDocument.Factory.newInstance(opts); //the document
-        OsmScriptType ost = osd.addNewOsmScript(); //add the osm script type
-       
+        OsmScriptType ost = osd.addNewOsmScript(); 
+        
         Document response;
         try {
             composeOsmScript(ost);
@@ -69,35 +69,38 @@ public class OverpassConnector extends Connector {
             Logger.getLogger(OverpassConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
+
     /**
      * Method to compose xml request format for OSM Overpass API
+     *
      * @param ost OsmScriptType
      * @return void
      */
     private void composeOsmScript(OsmScriptType ost) throws Exception {
 
-        noNamespace.QueryType qt = ost.addNewQuery(); 
-        qt.setType(QueryOSMType.NODE); 
+        noNamespace.QueryType qt = ost.addNewQuery();
+        qt.setType(QueryOSMType.NODE);
 
-        HasKvType hkt = qt.addNewHasKv(); 
-        hkt.setK("amenity"); 
-        hkt.setV("pub"); 
+        HasKvType hkt = qt.addNewHasKv();
+        hkt.setK("amenity");
+        hkt.setV("pub");
 
         for (Query tempQ : queries) {
-            if(tempQ.getQueryType().toString().equals("SPATIAL")) {
-                addSpatialSegment(qt, tempQ);
-            }
-            else{
-                throw new Exception("Empty spatial attribute");
+            switch (tempQ.getQueryType()) {
+                case SPATIAL:
+                    addSpatialSegment(qt, tempQ);
+                    break;
+                case ATTRIBUTAL:
+                    addAtributalSegment(qt, tempQ);
+                    break;
+                default:
+                    throw new Exception("Invalid attribute type.");
             }
         }
         ost.addNewPrint();
-       }
+    }
 
-    
-     /**
+    /**
      * Method to add BBOX segment of query to OSM Overpass API OsmScriptType
      * @param qt to add BBOX to
      * @param tempQ Query
@@ -108,11 +111,51 @@ public class OverpassConnector extends Connector {
         for (Iterator it = tempQ.keySet().iterator(); it.hasNext();) {
             Object key = it.next();
             List<Object> list = (List<Object>) tempQ.get(key);
+            
+            if(checkBbox(list)){
+               bbox.setS((Float) list.get(0));
+               bbox.setW((Float) list.get(1));
+               bbox.setN((Float) list.get(2));
+               bbox.setE((Float) list.get(3));
+            } else {
+                throw new Error("Invalid format of BBOX parameter.");
+            }
+        }
+    }
 
-            bbox.setS((Float) list.get(0));
-            bbox.setW((Float) list.get(1));
-            bbox.setN((Float) list.get(2));
-            bbox.setE((Float) list.get(3));
+    /**
+     * Method to check for correct format of BBOX
+     * @param list List of Objects
+     * @return boolean
+     */
+    private boolean checkBbox(List<Object> list){
+        boolean isCorrect = false;
+        
+        if(list.size() == 4){
+            isCorrect = true;
+            for (int i = 0; i < list.size(); i++) {
+                if(list.get(i) ==  null) isCorrect = false;
+            }
+        }
+        return isCorrect;
+    }
+    
+     /**
+     * Method to add ATTRIBUTE segment of query to OSM Overpass API OsmScriptType
+     * @param qt to add BBOX to
+     * @param tempQ Query
+     * @return void
+     */
+    private void addAtributalSegment(noNamespace.QueryType qt, Query tempQ) {
+        for (Iterator it = tempQ.keySet().iterator(); it.hasNext();) {
+            Object key = it.next();
+            List<Object> list = (List<Object>) tempQ.get(key);
+            for (Object obj : list) {
+                if(obj != null){
+                    HasKvType hkt = qt.addNewHasKv();
+                    hkt.setK(obj.toString());
+                }
+            }
         }
     }
 }

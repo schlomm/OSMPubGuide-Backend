@@ -23,7 +23,8 @@ public class OverpassConnectorTest {
         QueryCreator qc = QueryCreator.getInstance();
         HashMap<Parameter,String> input = new HashMap<>();
         input.put(Parameter.BBOX, "51.94892,7.5880337,51.973354,7.6595306");
-         
+        input.put(Parameter.FILTER, "wheelchair");
+        
         List<Query> queries = qc.createQueries(input);
         return queries;
     }
