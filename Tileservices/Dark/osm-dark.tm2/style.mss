@@ -1,3 +1,4 @@
+// Help here: https://www.mapbox.com/developers/vector-tiles/mapbox-streets/#
 // Common Colors
 
 // You don't need to set up @variables for every color, but it's a good
@@ -27,7 +28,7 @@ Map {
   }
   // Countries
   [admin_level=2] {
-    line-width: 1.4;
+    line-width: 0.9;
     line-cap: round;
     [zoom>=6] { line-width: 2; }
     [zoom>=8] { line-width: 4; }
@@ -108,7 +109,7 @@ Map {
 // ---------------------------------------------------------------------
 // Buildings 
 
-#building [zoom<=17]{
+#building [zoom<=15]{
   // At zoom level 13, only large buildings are included in the
   // vector tiles. At zoom level 14+, all buildings are included.
   polygon-fill: darken(@land, 50%);
@@ -116,10 +117,10 @@ Map {
 }
 // Seperate attachments are used to draw buildings with depth
 // to make them more prominent at high zoom levels
-#building [zoom>=18]{
-::wall { polygon-fill:mix(@land, #000, 85); }
+#building [zoom>=16]{
+::wall { polygon-fill:mix(@land, #A7A7A7, 80); }
 ::roof {
-  polygon-fill: darken(@land, 5%);
+  polygon-fill: darken(@land, 7%);
   polygon-geometry-transform:translate(-1,-1.5);
   polygon-clip:false;  
   line-width: 0.5;

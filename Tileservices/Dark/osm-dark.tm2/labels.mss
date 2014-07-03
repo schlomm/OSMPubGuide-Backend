@@ -132,7 +132,7 @@
     text-size: 14;
     text-face-name: @sans;
     text-placement: point;
-    text-fill: #eeeeee;
+    text-fill: #6E6E6E;
     text-halo-fill: fadeout(#000000, 50%);
     text-halo-radius: 1;
     text-halo-rasterizer: fast;
@@ -155,7 +155,7 @@
   text-face-name: @sans;
   text-wrap-width: 120;
   text-wrap-before: true;
-  text-fill: #eeeeee;
+  text-fill: #6E6E6E;
   text-halo-fill: fadeout(#000000, 50%);
   text-halo-radius: 2;
   text-halo-rasterizer: fast;
@@ -205,38 +205,7 @@
 // ---------------------------------------------------------------------
 // Points of interest
 
-#poi_label[zoom=14][scalerank<=1],
-#poi_label[zoom=15][scalerank<=2],
-#poi_label[zoom=16][scalerank<=3],
-#poi_label[zoom=17][scalerank<=4][localrank<=2],
-#poi_label[zoom>=18] {
-  // Separate icon and label attachments are created to ensure that
-  // all icon placement happens first, then labels are placed only
-  // if there is still room.
-  ::icon[maki!=null] {
-    // The [maki] field values match a subset of Maki icon names, so we
-    // can use that in our url expression.
-    // Not all POIs have a Maki icon assigned, so we limit this section
-    // to those that do. See also <https://www.mapbox.com/maki/>
-    marker-fill:#666;
-    marker-file:url('icon/[maki]-12.svg');
-  }
-  ::label {
-    text-name: @name;
-    text-face-name: @sans_md;
-    text-size: 12;
-    text-fill: #eeeeee;
-    text-halo-fill: fadeout(#000000, 50%);
-    text-halo-radius: 2;
-    text-halo-rasterizer: fast;
-    text-wrap-width: 70;
-    text-line-spacing:	-1;
-    //text-transform: uppercase;
-    //text-character-spacing:	0.25;
-    // POI labels with an icon need to be offset:
-    [maki!=null] { text-dy: 8; }
-  }
-}
+//moved to poi.mss (see separate tab)
 
 
 // ---------------------------------------------------------------------
@@ -249,13 +218,14 @@
   // in _src folder
   shield-name: [ref];
   shield-face-name: @sans_bd;
-  shield-fill: #765;
-  shield-min-distance: 60;
-  shield-size: 9;
-  shield-file: url('img/motorway_sm_[reflen].png');
+  shield-fill: #18A81F;
+    // Distance between labels (those with shield as background)
+  shield-min-distance: 110;
+  shield-size: 8;
+  shield-file: url('img/dark.png');
   [zoom>=15] {
     shield-size: 11;
-    shield-file: url('img/motorway_lg_[reflen].png');
+    shield-file: url('img/dark.png');
   }
 }
 
@@ -266,7 +236,7 @@
   text-name: [name];
   text-placement: line;  // text follows line path
   text-face-name: @sans;
-  text-fill: #eeeeee;
+  text-fill: #6E6E6E;
   text-halo-fill: fadeout(#000000, 20%);
   text-halo-radius: 2;
   text-halo-rasterizer: fast;

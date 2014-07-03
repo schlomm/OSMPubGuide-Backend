@@ -1,6 +1,6 @@
 // Basic color palette, from which variations will be derived.
 @motorway:          #732E2E;
-@main:              #C0B37A;
+@main:              #62582E;
 @street:            #ccc;
 @street_limited:    #ddd;
 
@@ -76,7 +76,7 @@
       [zoom>=16] { line-width:4; }
     }
     [class='path'][zoom>=15] {
-      line-color: #cba;
+      line-color: #6B6B6B;
       line-dasharray: 2,1;
       [zoom>=16] { line-width: 1.2; }
       [zoom>=17] { line-width: 1.5; }
@@ -121,19 +121,19 @@
     [class='street'][zoom>=15], {
       line-join:round;
       #road, #bridge { line-cap: round; }
-      [zoom>=15] { line-width:2.5; line-color:#ddd; }
+      [zoom>=15] { line-width:2.5; line-color:#403F3C; }
       [zoom>=16] { line-width:4; }
     }
     [class='street_limited'][zoom>=15], {
       line-join:round;
       #road, #bridge { line-cap: round; }
-      [zoom>=15] { line-width:2.5; line-color:#ccc; }
+      [zoom>=15] { line-width:2.5; line-color:#403F3C; }
       [zoom>=16] { line-width:4; }
     }
     [class='service'][zoom>=16], {
       line-join:round;
       #road, #bridge { line-cap: round; }
-      [zoom>=16] { line-width:2; line-color:#ddd; }
+      [zoom>=16] { line-width:2; line-color:#403F3C; }
     }
     [class='major_rail'] {
       line-width: 0.4;

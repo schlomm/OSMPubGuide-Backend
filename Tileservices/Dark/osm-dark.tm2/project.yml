@@ -11,9 +11,9 @@ bounds:
   - 180
   - 85.0511
 center: 
-  - 7.621164321899413
-  - 51.965775257334364
-  - 18
+  - 7.623170614242554
+  - 51.96444489861857
+  - 17
 description: ''
 format: "png8:m=h"
 interactivity_layer: ''
@@ -26,4 +26,5 @@ styles:
   - style.mss
   - labels.mss
   - road.mss
+  - poi.mss
 template: ''
