@@ -8,16 +8,22 @@ DROP FUNCTION delete_periodic(event_id integer, start_date timestamp, end_date t
 
 CREATE TABLE pub(
 pub_id SERIAL NOT NULL,
-price_interval TEXT,
+beer_price FLOAT,
+notice TEXT,
+entry_fee FLOAT,
 PRIMARY KEY (pub_id)
 );
 
 CREATE TABLE temporal_event(
 event_id SERIAL NOT NULL,
 pub_id SERIAL NOT NULL,
-name TEXT NOT NULL,
+name TEXT,
 type TEXT,
 description TEXT,
+event BOOLEAN,
+kitchen_hour BOOLEAN,
+happy_hour BOOLEAN,
+entry_fee FLOAT,
 PRIMARY KEY (event_id),
 FOREIGN KEY (pub_id) REFERENCES pub
 	ON DELETE CASCADE
