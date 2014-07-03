@@ -7,25 +7,22 @@ DROP FUNCTION insert_periodic(event_id integer, state TEXT, start_date timestamp
 DROP FUNCTION delete_periodic(event_id integer, start_date timestamp, end_date timestamp, end_periodic timestamp, periodic integer);
 
 CREATE TABLE pub(
-pub_id SERIAL NOT NULL,
+pub_ref SERIAL NOT NULL,
 beer_price FLOAT,
-notice TEXT,
-entry_fee FLOAT,
-PRIMARY KEY (pub_id)
+happy_hour BOOLEAN,
+PRIMARY KEY (pub_ref)
 );
 
 CREATE TABLE temporal_event(
 event_id SERIAL NOT NULL,
-pub_id SERIAL NOT NULL,
+pub_ref SERIAL NOT NULL,
 name TEXT,
 type TEXT,
 description TEXT,
 event BOOLEAN,
-kitchen_hour BOOLEAN,
-happy_hour BOOLEAN,
-entry_fee FLOAT,
+entry_fee TEXT,
 PRIMARY KEY (event_id),
-FOREIGN KEY (pub_id) REFERENCES pub
+FOREIGN KEY (pub_ref) REFERENCES pub
 	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
@@ -62,11 +59,11 @@ CREATE FUNCTION is_open(p_id integer, ts timestamp) RETURNS BOOLEAN AS $$
 	DECLARE result BOOLEAN := FALSE;
 	DECLARE number integer;
 	BEGIN
-	 SELECT COUNT(event_id) INTO number FROM pub NATURAL INNER JOIN temporal_event NATURAL INNER JOIN opened WHERE pub.pub_id = p_id AND (ts BETWEEN opened.start AND opened.end);
+	 SELECT COUNT(event_id) INTO number FROM pub NATURAL INNER JOIN temporal_event NATURAL INNER JOIN opened WHERE pub.pub_ref = p_id AND (ts BETWEEN opened.start AND opened.end);
 	 IF number != 0
 	    THEN result := TRUE;
 	 END IF;
-	 SELECT COUNT(event_id) INTO number FROM pub NATURAL INNER JOIN temporal_event NATURAL INNER JOIN closed WHERE pub.pub_id = p_id AND (ts BETWEEN closed.start AND closed.end);
+	 SELECT COUNT(event_id) INTO number FROM pub NATURAL INNER JOIN temporal_event NATURAL INNER JOIN closed WHERE pub.pub_ref = p_id AND (ts BETWEEN closed.start AND closed.end);
 	 IF number != 0
 		THEN result := FALSE;
 	 END IF;
