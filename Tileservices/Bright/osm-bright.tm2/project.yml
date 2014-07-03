@@ -11,12 +11,12 @@ bounds:
   - 180
   - 85.0511
 center: 
-  - 7.618758380413055
-  - 51.96610081736624
-  - 19
+  - 7.620241641998291
+  - 51.96234268609134
+  - 16
 description: ''
 format: "png8:m=h"
-interactivity_layer: aeroway
+interactivity_layer: poi_label
 layers: null
 maxzoom: 22
 minzoom: 0
@@ -26,4 +26,5 @@ styles:
   - style.mss
   - road.mss
   - labels.mss
+  - poi.mss
 template: ''

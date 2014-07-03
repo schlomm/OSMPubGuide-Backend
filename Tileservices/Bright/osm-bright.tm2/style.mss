@@ -14,6 +14,7 @@ Map {
   background-color:@land;
 }
 
+//
 // ---------------------------------------------------------------------
 // Political boundaries
 
@@ -108,7 +109,7 @@ Map {
 // ---------------------------------------------------------------------
 // Buildings 
 
-#building [zoom<=17]{
+#building [zoom<=15]{
   // At zoom level 13, only large buildings are included in the
   // vector tiles. At zoom level 14+, all buildings are included.
   polygon-fill: darken(@land, 50%);
@@ -116,10 +117,10 @@ Map {
 }
 // Seperate attachments are used to draw buildings with depth
 // to make them more prominent at high zoom levels
-#building [zoom>=18]{
+#building [zoom>=16]{
 ::wall { polygon-fill:mix(@land, #000, 85); }
 ::roof {
-  polygon-fill: darken(@land, 5%);
+  polygon-fill: darken(@land, 7%);
   polygon-geometry-transform:translate(-1,-1.5);
   polygon-clip:false;  
   line-width: 0.5;
