@@ -205,7 +205,7 @@
 // ---------------------------------------------------------------------
 // Points of interest
 
-// See separate tab (poi.mss)
+//moved to poi.mss (see separate tab)
 
 //#poi_label[zoom=14][scalerank<=1],
 //#poi_label[zoom=15][scalerank<=2],
@@ -252,7 +252,8 @@
   shield-name: [ref];
   shield-face-name: @sans_bd;
   shield-fill: #765;
-  shield-min-distance: 60;
+  // Distance between labels (those with shield as background)
+  shield-min-distance: 110;
   shield-size: 9;
   shield-file: url('img/motorway_sm_[reflen].png');
   [zoom>=15] {

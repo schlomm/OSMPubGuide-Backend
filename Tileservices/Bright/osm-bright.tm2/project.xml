@@ -5,7 +5,7 @@
 <Parameters>
   <Parameter name="attribution"><![CDATA[<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> <a class='mapbox-improve-map' href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>]]></Parameter>
   <Parameter name="bounds">-180,-85.0511,180,85.0511</Parameter>
-  <Parameter name="center">7.620241641998291,51.96234268609134,16</Parameter>
+  <Parameter name="center">7.619935870170592,51.96531418095875,18</Parameter>
   <Parameter name="format">png8:m=h</Parameter>
   <Parameter name="maxzoom">22</Parameter>
   <Parameter name="minzoom">0</Parameter>
@@ -1797,12 +1797,12 @@
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <Filter>([reflen] &gt;= 1) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer size="11" file="img/motorway_lg_[reflen].png" fontset-name="fontset-0" fill="#776655" minimum-distance="60" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <ShieldSymbolizer size="11" file="img/motorway_lg_[reflen].png" fontset-name="fontset-0" fill="#776655" minimum-distance="110" ><![CDATA[[ref]]]></ShieldSymbolizer>
   </Rule>
   <Rule>
     <MinScaleDenominator>25000</MinScaleDenominator>
     <Filter>([reflen] &gt;= 1) and ([reflen] &lt;= 6)</Filter>
-    <ShieldSymbolizer fontset-name="fontset-0" fill="#776655" minimum-distance="60" size="9" file="img/motorway_sm_[reflen].png" ><![CDATA[[ref]]]></ShieldSymbolizer>
+    <ShieldSymbolizer fontset-name="fontset-0" fill="#776655" minimum-distance="110" size="9" file="img/motorway_sm_[reflen].png" ><![CDATA[[ref]]]></ShieldSymbolizer>
   </Rule>
 </Style>
 <Layer name="road_label"

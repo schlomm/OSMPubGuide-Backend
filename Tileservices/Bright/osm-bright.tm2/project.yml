@@ -11,9 +11,9 @@ bounds:
   - 180
   - 85.0511
 center: 
-  - 7.620241641998291
-  - 51.96234268609134
-  - 16
+  - 7.619935870170592
+  - 51.96531418095875
+  - 18
 description: ''
 format: "png8:m=h"
 interactivity_layer: poi_label
