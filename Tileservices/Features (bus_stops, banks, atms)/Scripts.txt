@@ -1,0 +1,62 @@
+<!--
+Query bus_stops directly via OSM
+-->
+<osm-script>
+  <query type="node">
+    <has-kv k="highway" v="bus_stop"/>
+    <bbox-query e="7.7847" n="52.0114" s="51.9081" w="7.4892"/>
+  </query>
+  <print/>
+</osm-script>
+
+
+<!--
+Query ATMs and Banks directly via OSM
+-->
+<osm-script>
+  <!-- gather results -->
+  <union>
+    <!-- query part for: “amenity=drinking_water” -->
+    <query type="node">
+      <has-kv k="amenity" v="atm"/>
+       <bbox-query e="7.7847" n="52.0114" s="51.9081" w="7.4892"/>
+    </query>
+    <query type="node">
+      <has-kv k="amenity" v="bank"/>
+       <bbox-query e="7.7847" n="52.0114" s="51.9081" w="7.4892"/>
+    </query>
+  </union>
+  <!-- print results -->
+  <print mode="body"/>
+  <recurse type="down"/>
+  <print mode="skeleton" order="quadtile"/>
+</osm-script>
+
+
+
+<!--
+Query all enties which amenity=pub|bar|nightclub
+-->
+<osm-script>
+  <!-- gather results -->
+  <union>
+    <!-- query part for: “amenity=drinking_water” -->
+    <query type="node">
+      <has-kv k="amenity" v="nightclub"/>
+       <bbox-query e="7.7847" n="52.0114" s="51.9081" w="7.4892"/>
+    </query>
+    <query type="node">
+      <has-kv k="amenity" v="bar"/>
+       <bbox-query e="7.7847" n="52.0114" s="51.9081" w="7.4892"/>
+    </query>
+    <query type="node">
+      <has-kv k="amenity" v="pub"/>
+       <bbox-query e="7.7847" n="52.0114" s="51.9081" w="7.4892"/>
+    </query>
+  </union>
+  <!-- print results -->
+  <print mode="body"/>
+  <recurse type="down"/>
+  <print mode="skeleton" order="quadtile"/>
+</osm-script>
+
