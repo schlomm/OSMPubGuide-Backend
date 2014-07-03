@@ -22,6 +22,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
+import noNamespace.OsmDocument;
 
 /**
  * REST Web Service for querying (Temporal data) OSM
@@ -57,7 +58,7 @@ public class QueryResource {
             @DefaultValue("") @QueryParam("filter") String filter,
             @DefaultValue("") @QueryParam("eventFilter") String eventFilter
             
-    ) {
+    ){
         
         HashMap<Parameter,String> parameters = new HashMap<>();
         parameters.put(Parameter.BBOX, bboxString);
@@ -67,17 +68,39 @@ public class QueryResource {
         parameters.put(Parameter.EVENT_FILTER, eventFilter);
         
         QueryCreator qc = QueryCreator.getInstance();
+        List<Query> queries = null;
         try {
-            List<Query> queries = qc.createQueries(parameters);
-            
-            //TODO implement Connector and the query delegation
-            
-            return this.testOutput(queries);
-            
+            queries = qc.createQueries(parameters);
         } catch (ParseException ex) {
             Logger.getLogger(QueryResource.class.getName()).log(Level.SEVERE, null, ex);
-            return "<error>There was a parsin error</error>";
+            return "<error>There was a parsing error</error>";
+        } 
+        //TODO implement Connector and the query delegation
+        QueryDelegator delegator = new QueryDelegator(queries);
+
+        Thread t = new Thread(delegator);
+        
+        try {
+            /*
+                The query delegator is a Runnable and this means that we can start
+                Thread for this. A Thread is active for the time until all lines
+                of code were executed.
+            */
+            
+            t.start();
+            t.join();
+            OsmDocument osm = delegator.getResponse();
+
+            return osm.toString();
+        } catch (IllegalThreadStateException e) {
+            t.interrupt();
+            return "<error>There was an unexpected error while delegating the request.</error>";
+        } catch (InterruptedException ex) {
+            Logger.getLogger(QueryResource.class.getName()).log(Level.SEVERE, null, ex);
+            return "<error>A Thread was interrupted</error>";
         }
+        
+        
     }
     
     /**
