@@ -44,7 +44,6 @@ public class OverpassConnector extends Connector {
      * Method to be called when Connector.sendRequest is called Composes the OSM
      * API script and and sends the actual request Stores internally the
      * response.
-     *
      * @return void
      */
     @Override
@@ -79,7 +78,6 @@ public class OverpassConnector extends Connector {
 
     /**
      * Method to compose xml request format for OSM Overpass API
-     *
      * @param ost OsmScriptType
      * @return void
      */
@@ -108,7 +106,6 @@ public class OverpassConnector extends Connector {
 
     /**
      * Method to add BBOX segment of query to OSM Overpass API OsmScriptType
-     *
      * @param qt to add BBOX to
      * @param tempQ Query
      * @return void
@@ -132,7 +129,6 @@ public class OverpassConnector extends Connector {
 
     /**
      * Method to check for correct format of BBOX
-     *
      * @param list List of Objects
      * @return boolean
      */
@@ -153,7 +149,6 @@ public class OverpassConnector extends Connector {
     /**
      * Method to add ATTRIBUTE segment of query to OSM Overpass API
      * OsmScriptType
-     *
      * @param qt to add BBOX to
      * @param tempQ Query
      * @return void
