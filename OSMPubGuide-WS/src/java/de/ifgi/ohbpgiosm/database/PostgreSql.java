@@ -8,6 +8,7 @@ package de.ifgi.ohbpgiosm.database;
 
 import de.ifgi.ohbpgiosm.logging.MyLogger;
 import java.sql.*;
+import java.util.Properties;
 import org.apache.log4j.*;
 
 /**
@@ -16,21 +17,18 @@ import org.apache.log4j.*;
  */
 public class PostgreSql {
     
-    private final static Logger logger = MyLogger.getInstance().getLogger();
-
-    // JDBC driver name and database URL
-    static final String JDBC_DRIVER = "org.postgresql.Driver";
-    static final String DB_URL = "jdbc:postgresql://giv-openpubguide.uni-muenster.de:5432/";
+    private static final Logger logger = MyLogger.getInstance().getLogger();
+    private static final Properties dbCredentials = PropertyReader.getInstance().getProperty();
+    // reading database credentials from properties file
+    static final String JDBC_DRIVER = dbCredentials.getProperty("db_driver_name"); 
+    static final String DB_URL = dbCredentials.getProperty("db_url");
+    static final String PASSWORD = dbCredentials.getProperty("db_password");
+    static final String USER = dbCredentials.getProperty("db_user");
     
-    // TODO: Enter database credentials from learnweb post
-    // https://www.uni-muenster.de/LearnWeb/learnweb2/mod/forum/discuss.php?d=59487
-    static final String USER = "";
-    static final String PASSWORD = "";
-
-    public static void init() {
+    public static void main(String[] args) {
         Connection connection = null;
         Statement statement = null;
-
+        
         try {
             //Register JDBC driver
             Class.forName("org.postgresql.Driver").newInstance();
