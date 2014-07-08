@@ -31,8 +31,8 @@ import org.xml.sax.SAXException;
  */
 public class OverpassConnector extends Connector {
 
-    private String hostName = "http://overpass-api.de/api/interpreter";
-    private List<String> amenities = Arrays.asList("pub", "nightclub", "bar");
+    private final String hostName = "http://overpass-api.de/api/interpreter";
+    private final List<String> amenities = Arrays.asList("pub", "nightclub", "bar");
 
     /**
      * Constructor
@@ -44,7 +44,6 @@ public class OverpassConnector extends Connector {
      * Method to be called when Connector.sendRequest is called Composes the OSM
      * API script and and sends the actual request Stores internally the
      * response.
-     * @return void
      */
     @Override
     public void run() {
@@ -61,6 +60,7 @@ public class OverpassConnector extends Connector {
                 composeOsmScript(union, amenity);
             }
             ost.addNewPrint();
+            System.out.println(osd);
             response = HttpClient.getInstance().sendPostRequest(this.hostName, osd.toString());
             this.response = OsmDocument.Factory.parse(response);
         } catch (IOException ex) {
@@ -160,7 +160,22 @@ public class OverpassConnector extends Connector {
             for (Object obj : list) {
                 if (obj != null) {
                     HasKvType hkt = qt.addNewHasKv();
-                    hkt.setK(obj.toString());
+                    switch (obj.toString()){
+                        case "isBarrierFree":
+                            hkt.setK("wheelchair");
+                            hkt.setV("limited");
+                            break;
+                        case "hasFood":
+                            hkt.setK("food");
+                            hkt.setV("yes");
+                            break;
+                        case "hasOutdoorSeats":
+                            hkt.setK("outdoor_seating");
+                            hkt.setV("yes");
+                            //TODO beer_garden
+                            break;
+                        default:
+                    }
                 }
             }
         }
