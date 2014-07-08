@@ -5,12 +5,12 @@
 <Parameters>
   <Parameter name="attribution"><![CDATA[<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> <a class='mapbox-improve-map' href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>]]></Parameter>
   <Parameter name="bounds">-180,-85.0511,180,85.0511</Parameter>
-  <Parameter name="center">7.623170614242554,51.96444489861857,17</Parameter>
+  <Parameter name="center">7.6292699575424185,51.962374087789975,18</Parameter>
   <Parameter name="format">png8:m=h</Parameter>
   <Parameter name="maxzoom">22</Parameter>
   <Parameter name="minzoom">0</Parameter>
   <Parameter name="name"><![CDATA[osm-dark]]></Parameter>
-  <Parameter name="source"><![CDATA[mapbox:///mapbox.mapbox-streets-v5]]></Parameter>
+  <Parameter name="source"><![CDATA[mapbox:///mapbox.mapbox-streets-v5,schlomm.1d0u23xr,schlomm.asafko6r,schlomm.7opta9k9,schlomm.awmcayvi]]></Parameter>
 </Parameters>
 
 <FontSet name="fontset-0">
@@ -1734,22 +1734,17 @@
 
 <Style name="poi_label-label" filter-mode="first">
   <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <Filter>([maki] = 'hospital')</Filter>
-    <TextSymbolizer dy="8" fontset-name="fontset-2" size="8" fill="#666666" halo-fill="rgba(14, 140, 21, 0.5)" halo-radius="0.2" halo-rasterizer="fast" wrap-width="70" line-spacing="-1" text-transform="uppercase" character-spacing="0.25" ><![CDATA[[name_de]]]></TextSymbolizer>
+    <TextSymbolizer dy="8" fontset-name="fontset-2" size="8" fill="#666666" halo-fill="rgba(255, 255, 255, 0.5)" halo-radius="0.2" halo-rasterizer="fast" wrap-width="70" line-spacing="-1" text-transform="uppercase" character-spacing="0.25" ><![CDATA[[name_de]]]></TextSymbolizer>
   </Rule>
   <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <Filter>([maki] = 'bank')</Filter>
-    <TextSymbolizer dy="8" fontset-name="fontset-2" size="8" fill="#666666" halo-fill="rgba(14, 140, 21, 0.5)" halo-radius="0.2" halo-rasterizer="fast" wrap-width="70" line-spacing="-1" text-transform="uppercase" character-spacing="0.25" ><![CDATA[[name_de]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <Filter>([maki] = 'fast-food')</Filter>
     <TextSymbolizer dy="8" fontset-name="fontset-2" size="8" fill="#666666" halo-fill="rgba(14, 140, 21, 0.5)" halo-radius="0.2" halo-rasterizer="fast" wrap-width="70" line-spacing="-1" text-transform="uppercase" character-spacing="0.25" ><![CDATA[[name_de]]]></TextSymbolizer>
   </Rule>
   <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <Filter>([maki] = 'police')</Filter>
     <TextSymbolizer dy="8" fontset-name="fontset-2" size="8" fill="#666666" halo-fill="rgba(14, 140, 21, 0.5)" halo-radius="0.2" halo-rasterizer="fast" wrap-width="70" line-spacing="-1" text-transform="uppercase" character-spacing="0.25" ><![CDATA[[name_de]]]></TextSymbolizer>
   </Rule>
@@ -1759,11 +1754,6 @@
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <Filter>([maki] = 'hospital')</Filter>
     <MarkersSymbolizer fill="#f60808" file="icon/hospital-12.svg" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <Filter>([maki] = 'bank')</Filter>
-    <MarkersSymbolizer fill="#a4a4a4" file="icon/bank-12.svg" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
@@ -1821,5 +1811,47 @@
 <Layer name="housenum_label"
   srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
     <StyleName>housenum_label</StyleName>  </Layer>
+
+<Layer name="atms_banks_label"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+      </Layer>
+
+<Layer name="bus_stops_label"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+      </Layer>
+
+<Style name="atms_banks-label" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer fontset-name="fontset-2" size="8" fill="#ce8a0a" allow-overlap="true" halo-fill="rgba(255, 255, 255, 0.5)" halo-radius="0.2" halo-rasterizer="fast" wrap-width="70" line-spacing="-1" text-transform="uppercase" character-spacing="0.25" placement-type="simple" placements="N,S,E,W,NE,SE,NW,SW,16,14,12" dy="9" dx="9" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Style name="atms_banks-icon" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MarkersSymbolizer fill="#ce8a0a" file="icon/bank-12.svg" spacing="20" allow-overlap="true" ignore-placement="true" />
+  </Rule>
+</Style>
+<Layer name="atms_banks"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>atms_banks-icon</StyleName>
+    <StyleName>atms_banks-label</StyleName>  </Layer>
+
+<Style name="bus_stops-label" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <TextSymbolizer fontset-name="fontset-2" size="8" fill="#397498" halo-fill="rgba(255, 255, 255, 0.5)" halo-radius="0.01" halo-rasterizer="fast" wrap-width="70" line-spacing="-1" text-transform="uppercase" allow-overlap="true" character-spacing="0.25" placement-type="simple" placements="N,S,E,W,NE,SE,NW,SW,16,14,12" dy="9" dx="9" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Style name="bus_stops-icon" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MarkersSymbolizer fill="#397498" stroke="#ffffff" stroke-width="0.5" file="icon/bus-12.svg" spacing="20" allow-overlap="true" ignore-placement="true" />
+  </Rule>
+</Style>
+<Layer name="bus_stops"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>bus_stops-icon</StyleName>
+    <StyleName>bus_stops-label</StyleName>  </Layer>
 
 </Map>
