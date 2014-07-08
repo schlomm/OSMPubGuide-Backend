@@ -11,8 +11,8 @@ bounds:
   - 180
   - 85.0511
 center: 
-  - 7.619935870170592
-  - 51.96531418095875
+  - 7.623240351676941
+  - 51.96069489241015
   - 18
 description: ''
 format: "png8:m=h"
@@ -21,7 +21,7 @@ layers: null
 maxzoom: 22
 minzoom: 0
 name: osm-bright
-source: "mapbox:///mapbox.mapbox-streets-v5"
+source: "mapbox:///mapbox.mapbox-streets-v5,schlomm.1d0u23xr,schlomm.asafko6r,schlomm.7opta9k9,schlomm.awmcayvi"
 styles: 
   - style.mss
   - road.mss

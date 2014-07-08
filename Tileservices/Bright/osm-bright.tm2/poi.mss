@@ -20,7 +20,7 @@
     marker-fill:#666;
     marker-file:url('icon/police-12.svg');
   }
-  ::label {
+  ::label[zoom>=18] {
     text-name: @name;
     text-face-name: @sans_md;
     text-size: 8;
@@ -43,7 +43,7 @@
     marker-fill:#666;
     marker-file:url('icon/fast-food-12.svg');
   }
-  ::label {
+  ::label[zoom>=18] {
     text-name: @name;
     text-face-name: @sans_md;
     text-size: 8;
@@ -61,28 +61,28 @@
 }
 
 
-#poi_label[zoom>=16][maki='bank'] {
-  ::icon {
-    marker-fill:#666;
-    marker-file:url('icon/bank-12.svg');
-  }
-  ::label {
-    text-name: @name;
-    text-face-name: @sans_md;
-    text-size: 8;
-    text-fill: #666;
-    text-halo-fill: fadeout(#fff, 50%);
-    text-halo-radius: 1;
-    text-halo-radius: 1;
-    text-halo-rasterizer: fast;
-    text-wrap-width: 70;
-    text-line-spacing:	-1;
-    text-transform: uppercase;
-    text-character-spacing:	0.25;
-    //POI labels with an icon need to be offset:
-    [maki!=null] { text-dy: 8; }
-  }
-}
+//#poi_label[zoom>=16][maki='bank'] {
+//  ::icon {
+//    marker-fill:#666;
+//    marker-file:url('icon/bank-12.svg');
+//  }
+//  ::label {
+//    text-name: @name;
+//    text-face-name: @sans_md;
+//    text-size: 8;
+//    text-fill: #666;
+//    text-halo-fill: fadeout(#fff, 50%);
+//    text-halo-radius: 1;
+//    text-halo-radius: 1;
+//    text-halo-rasterizer: fast;
+//    text-wrap-width: 70;
+//    text-line-spacing:	-1;
+//    text-transform: uppercase;
+//    text-character-spacing:	0.25;
+//    //POI labels with an icon need to be offset:
+//    [maki!=null] { text-dy: 8; }
+//  }
+//}
 
 
 #poi_label[zoom>=16][maki='hospital'] {
@@ -90,7 +90,7 @@
     marker-fill:#F60808;
     marker-file:url('icon/hospital-12.svg');
   }
-  ::label {
+  ::label[zoom>=18] {
     text-name: @name;
     text-face-name: @sans_md;
     text-size: 8;
@@ -111,23 +111,31 @@
 
 #atms_banks[zoom>=16] {
   ::icon {
-    marker-fill:#A4A4A4;
+    marker-fill:#666;
     marker-file:url('icon/bank-12.svg');
+    marker-spacing: 20;
+    marker-allow-overlap: true;
+    marker-ignore-placement: true;
   }
-  ::label {
+  ::label[zoom>=18] {
     text-name: [name];
     text-face-name: @sans_md;
     text-size: 8;
     text-fill: #666;
+    text-allow-overlap: true;
+    // Halo around label
     text-halo-fill: fadeout(#fff, 50%);
     text-halo-radius: 1;
     text-halo-rasterizer: fast;
     text-wrap-width: 70;
     text-line-spacing:	-1;
     text-transform: uppercase;
+    text-allow-overlap:true;
     text-character-spacing:	0.25;
-    //POI labels with an icon need to be offset:
-    [maki!=null] { text-dy: 8; }
+    text-placement-type: simple;
+    text-placements: "N,S,E,W,NE,SE,NW,SW,16,14,12";
+    text-dy: 9;
+    text-dx: 9;
   }
 }
 
@@ -137,7 +145,7 @@
     marker-fill:#666;
     marker-file:url('icon/bus-12.svg');
     marker-spacing: 20;
-    //marker-allow-overlap: true;
+    marker-allow-overlap: true;
     marker-ignore-placement: true;
   }
   ::label[zoom>=18] {
@@ -145,6 +153,7 @@
     text-face-name: @sans_md;
     text-size: 8;
     text-fill: #666;
+    text-allow-overlap: true;
     // Halo around label
     text-halo-fill: fadeout(#fff, 50%);
     text-halo-radius: 1;
@@ -152,6 +161,7 @@
     text-wrap-width: 70;
     text-line-spacing:	-1;
     text-transform: uppercase;
+    text-allow-overlap:true;
     text-character-spacing:	0.25;
     text-placement-type: simple;
     text-placements: "N,S,E,W,NE,SE,NW,SW,16,14,12";
