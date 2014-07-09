@@ -11,19 +11,20 @@ bounds:
   - 180
   - 85.0511
 center: 
-  - 7.618758380413055
-  - 51.96610081736624
-  - 19
+  - 7.623240351676941
+  - 51.96069489241015
+  - 18
 description: ''
 format: "png8:m=h"
-interactivity_layer: aeroway
+interactivity_layer: poi_label
 layers: null
 maxzoom: 22
 minzoom: 0
 name: osm-bright
-source: "mapbox:///mapbox.mapbox-streets-v5"
+source: "mapbox:///mapbox.mapbox-streets-v5,schlomm.1d0u23xr,schlomm.asafko6r,schlomm.7opta9k9,schlomm.awmcayvi"
 styles: 
   - style.mss
   - road.mss
   - labels.mss
+  - poi.mss
 template: ''

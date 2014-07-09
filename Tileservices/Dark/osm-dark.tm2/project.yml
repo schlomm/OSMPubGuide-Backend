@@ -11,8 +11,8 @@ bounds:
   - 180
   - 85.0511
 center: 
-  - 7.621164321899413
-  - 51.965775257334364
+  - 7.6292699575424185
+  - 51.962374087789975
   - 18
 description: ''
 format: "png8:m=h"
@@ -21,9 +21,10 @@ layers: null
 maxzoom: 22
 minzoom: 0
 name: osm-dark
-source: "mapbox:///mapbox.mapbox-streets-v5"
+source: "mapbox:///mapbox.mapbox-streets-v5,schlomm.1d0u23xr,schlomm.asafko6r,schlomm.7opta9k9,schlomm.awmcayvi"
 styles: 
   - style.mss
   - labels.mss
   - road.mss
+  - poi.mss
 template: ''

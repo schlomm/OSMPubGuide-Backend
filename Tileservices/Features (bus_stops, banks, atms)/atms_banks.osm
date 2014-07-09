@@ -1,0 +1,805 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="Overpass API">
+<note>The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.</note>
+<meta osm_base="2014-07-03T09:58:02Z"/>
+
+  <node id="43652527" lat="51.9637998" lon="7.6467787">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:country" v="DE"/>
+    <tag k="addr:housenumber" v="58"/>
+    <tag k="addr:postcode" v="48145"/>
+    <tag k="addr:street" v="Warendorfer Straße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparkasse (temporär)"/>
+    <tag k="note" v="rebuild of main building under construction"/>
+    <tag k="operator" v="Sparkasse Münsterland Ost"/>
+    <tag k="status" v="temporary"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="243341290" lat="51.9838146" lon="7.6119524">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="242"/>
+    <tag k="addr:postcode" v="48159"/>
+    <tag k="addr:street" v="Grevener Straße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="247783100" lat="51.9730351" lon="7.5641122">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:country" v="DE"/>
+    <tag k="addr:housenumber" v="15"/>
+    <tag k="addr:postcode" v="48161"/>
+    <tag k="addr:street" v="Heekweg"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparkasse Münsterland Ost"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="248507757" lat="51.9567269" lon="7.5936849">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:country" v="DE"/>
+    <tag k="addr:housenumber" v="70"/>
+    <tag k="addr:postcode" v="48149"/>
+    <tag k="addr:street" v="Waldeyerstraße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="limited"/>
+  </node>
+  <node id="251147612" lat="51.9823686" lon="7.6340878">
+    <tag k="amenity" v="bank"/>
+    <tag k="created_by" v="JOSM"/>
+    <tag k="name" v="Sparda-Bank"/>
+    <tag k="wheelchair" v="limited"/>
+  </node>
+  <node id="256535301" lat="51.9667169" lon="7.6558514">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:country" v="DE"/>
+    <tag k="addr:housenumber" v="152"/>
+    <tag k="addr:postcode" v="48145"/>
+    <tag k="addr:street" v="Warendorfer Straße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="267517196" lat="51.9510813" lon="7.6248148">
+    <tag k="amenity" v="bank"/>
+    <tag k="name" v="Commerzbank"/>
+    <tag k="operator" v="Commerzbank"/>
+    <tag k="website" v="http://www.commerzbank.de/"/>
+    <tag k="wheelchair" v="limited"/>
+  </node>
+  <node id="267517200" lat="51.9540789" lon="7.6262696">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="15"/>
+    <tag k="addr:postcode" v="48153"/>
+    <tag k="addr:street" v="Hammer Straße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Stadtsparkasse Münsterland Ost"/>
+    <tag k="operator" v="Stadtsparkasse Münsterland Ost"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="267845309" lat="51.9401946" lon="7.6093649">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="263"/>
+    <tag k="addr:postcode" v="48151"/>
+    <tag k="addr:street" v="Weseler Straße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparkasse Münsterland Ost"/>
+    <tag k="operator" v="Sparkasse"/>
+    <tag k="source" v="local_knowledge"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="269941216" lat="51.9611741" lon="7.6759885">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="72"/>
+    <tag k="addr:postcode" v="48155"/>
+    <tag k="addr:street" v="Pleistermühlenweg"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="283448829" lat="51.9738159" lon="7.6110652">
+    <tag k="amenity" v="atm"/>
+    <tag k="operator" v="Volksbank"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="288385411" lat="51.9836258" lon="7.6341057">
+    <tag k="amenity" v="atm"/>
+    <tag k="name" v="Volksbank"/>
+    <tag k="operator" v="Volksbank"/>
+  </node>
+  <node id="290428952" lat="51.9571360" lon="7.6331317">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:country" v="DE"/>
+    <tag k="addr:housenumber" v="8"/>
+    <tag k="addr:postcode" v="48143"/>
+    <tag k="addr:street" v="Windthorststraße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="operator" v="Sparkasse Münsterland Ost"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="290428963" lat="51.9682350" lon="7.6306269">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="2"/>
+    <tag k="addr:postcode" v="48147"/>
+    <tag k="addr:street" v="Kanalstraße"/>
+    <tag k="alt_name" v="Sparkasse Münsterland-Ost, Filiale Kanalstraße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="bic" v="WELADED1MST"/>
+    <tag k="blz" v="40050150"/>
+    <tag k="email" v="info@sparkasse-mslo.de"/>
+    <tag k="fax" v="+49 251 59840770"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="opening_hours" v="Mo-We 09:00-12:30,14:00-16:30; Th 09:00-12:30,14:00-18:00; Fr 09:00-12:30"/>
+    <tag k="operator" v="Sparkasse"/>
+    <tag k="phone" v="+49 251 59840700"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+    <tag k="wheelchair:description" v="Rampe vorhanden. Toilettenbenutzung jedoch nicht möglich. Außengeldautomat wegen Stange etwas schwierig zu erreichen."/>
+  </node>
+  <node id="296301896" lat="51.9707701" lon="7.6405375">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:country" v="DE"/>
+    <tag k="addr:housenumber" v="123"/>
+    <tag k="addr:postcode" v="48147"/>
+    <tag k="addr:street" v="Piusallee"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparkasse Münsterland Ost"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="297692803" lat="51.9240912" lon="7.6730057">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="1a"/>
+    <tag k="addr:postcode" v="48167"/>
+    <tag k="addr:street" v="Heidestraße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="bic" v="GENODEM1MSC"/>
+    <tag k="blz" v="40160050"/>
+    <tag k="fax" v="+49 251 50050599"/>
+    <tag k="name" v="Volksbank Münster"/>
+    <tag k="opening_hours" v="Mo-We 09:00-12:30,14:00-17:00; Th 09:00-12:30,14:00-18:00; Fr 09:00-12:30,14:00-15:30"/>
+    <tag k="phone" v="+49 251 5005050"/>
+    <tag k="website" v="https://www.volksbank-muenster.de"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="301306348" lat="51.9877564" lon="7.6985961">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="142"/>
+    <tag k="addr:postcode" v="48157"/>
+    <tag k="addr:street" v="Petronillaplatz"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="335681474" lat="51.9816174" lon="7.6372997">
+    <tag k="amenity" v="bank"/>
+    <tag k="name" v="PSD-Bank"/>
+  </node>
+  <node id="335682324" lat="51.9935623" lon="7.6468450">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="9"/>
+    <tag k="addr:postcode" v="48157"/>
+    <tag k="addr:street" v="Hamannplatz"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="operator" v="Sparkasse Münsterland-Ost"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="385219739" lat="51.9529535" lon="7.6130833">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:country" v="DE"/>
+    <tag k="addr:housenumber" v="46"/>
+    <tag k="addr:postcode" v="48151"/>
+    <tag k="addr:street" v="Scharnhorststraße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Volksbank"/>
+    <tag k="operator" v="Volksbank Münster eG"/>
+    <tag k="website" v="http://www.volksbank-muenster.de/"/>
+  </node>
+  <node id="411060180" lat="51.9301848" lon="7.5812635">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="50"/>
+    <tag k="addr:postcode" v="48163"/>
+    <tag k="addr:street" v="Dingbängerweg"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="413459205" lat="51.9644515" lon="7.6487776">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:country" v="DE"/>
+    <tag k="addr:housenumber" v="109"/>
+    <tag k="addr:postcode" v="48145"/>
+    <tag k="addr:street" v="Warendorfer Straße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Volksbank"/>
+    <tag k="operator" v="Volksbank Münster eG"/>
+    <tag k="website" v="http://www.volksbank-muenster.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="413459206" lat="51.9580074" lon="7.6395899">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:country" v="DE"/>
+    <tag k="addr:housenumber" v="37-39"/>
+    <tag k="addr:postcode" v="48155"/>
+    <tag k="addr:street" v="Wolbecker Straße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Volksbank"/>
+    <tag k="operator" v="Volksbank Münster eG"/>
+    <tag k="website" v="http://www.volksbank-muenster.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="413459207" lat="51.9644222" lon="7.6284922">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:country" v="DE"/>
+    <tag k="addr:housenumber" v="66"/>
+    <tag k="addr:postcode" v="48143"/>
+    <tag k="addr:street" v="Neubrückenstraße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Volksbank"/>
+    <tag k="operator" v="Volksbank Münster eG"/>
+    <tag k="website" v="http://www.volksbank-muenster.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="440691066" lat="51.9129122" lon="7.7228728">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="30a"/>
+    <tag k="addr:postcode" v="48167"/>
+    <tag k="addr:street" v="Hiltruper Straße"/>
+    <tag k="amenity" v="atm"/>
+    <tag k="entrance" v="yes"/>
+    <tag k="name" v="Sparkasse Münsterland-Ost"/>
+    <tag k="operator" v="Sparkasse Münsterland"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="456750490" lat="51.9949051" lon="7.6039516">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="20"/>
+    <tag k="addr:postcode" v="48159"/>
+    <tag k="addr:street" v="Idenbrockplatz"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparkasse Münsterland Ost"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="456780944" lat="51.9959708" lon="7.6027554">
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Volksbank Münster"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="457091391" lat="51.9307701" lon="7.6060921">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="4"/>
+    <tag k="addr:postcode" v="48163"/>
+    <tag k="addr:street" v="Geringhoffstraße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="500017669" lat="51.9702371" lon="7.6219417">
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="dispensing" v="yes"/>
+    <tag k="name" v="Volksbank"/>
+    <tag k="opening_hours" v="Mo-We 09:00-12:30,14:00-17:00; Th 09:00-12:30,14:00-18:00; Fr 09:00-12:00,14:00-15:30"/>
+    <tag k="website" v="http://www.volksbank-muenster.de/"/>
+    <tag k="wheelchair" v="limited"/>
+  </node>
+  <node id="516473197" lat="51.9616276" lon="7.6276367">
+    <tag k="amenity" v="atm"/>
+    <tag k="operator" v="Volksbank Münster"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="520231294" lat="51.9605224" lon="7.6243118">
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Deutsche Bank"/>
+    <tag k="operator" v="Deutsche Bank"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="520240380" lat="51.9592610" lon="7.6280545">
+    <tag k="amenity" v="atm"/>
+    <tag k="name" v="Volksbank Münster"/>
+    <tag k="operator" v="Volksbank Münster"/>
+    <tag k="website" v="http://www.volksbank-muenster.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="523365441" lat="51.9598842" lon="7.6260293">
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparda-Bank"/>
+    <tag k="operator" v="Sparda-Bank"/>
+    <tag k="website" v="http://www.sparda.de/"/>
+    <tag k="wheelchair" v="limited"/>
+  </node>
+  <node id="523365452" lat="51.9578728" lon="7.6262176">
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Commerzbank"/>
+    <tag k="operator" v="Commerzbank"/>
+    <tag k="website" v="http://www.commerzbank.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="523365460" lat="51.9607247" lon="7.6269474">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:country" v="DE"/>
+    <tag k="addr:housenumber" v="7"/>
+    <tag k="addr:postcode" v="48143"/>
+    <tag k="addr:street" v="Rothenburg"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="operator" v="Sparkasse"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="525970923" lat="51.9251786" lon="7.5241871">
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="designation" v="Volksbank"/>
+    <tag k="name" v="Volksbank Münster eG"/>
+    <tag k="operator" v="Volksbank Münster eG"/>
+  </node>
+  <node id="526429368" lat="51.9619407" lon="7.6259814">
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Postbank"/>
+    <tag k="operator" v="Postbank"/>
+    <tag k="website" v="http://www.postbank.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="538953190" lat="51.9531735" lon="7.6390980">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="17"/>
+    <tag k="addr:postcode" v="48155"/>
+    <tag k="addr:street" v="Hansaring"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="operator" v="Sparkasse Münsterland-Ost"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="606068754" lat="51.9512072" lon="7.6371350">
+    <tag k="addr:housenumber" v="2"/>
+    <tag k="addr:street" v="Hafenplatz"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="PSD-Bank"/>
+    <tag k="operator" v="PSD-Bank"/>
+    <tag k="website" v="http://www.psd-westfalen-lippe.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="612344810" lat="51.9599567" lon="7.6299630">
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Deutsche Bank"/>
+    <tag k="operator" v="Deutsche Bank"/>
+    <tag k="website" v="http://www.deutsche-bank.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="646827917" lat="51.9464708" lon="7.6080057">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="31"/>
+    <tag k="addr:postcode" v="48151"/>
+    <tag k="addr:street" v="Goerdelerstraße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="opening_hours" v="Mo-We 09:00-12:30,14:00-16:30; Th 09:00-12:30,14:00-18:00; Fr 09:00-12:30,14:00-16:30"/>
+    <tag k="operator" v="Sparkasse Münsterland Ost"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="667520640" lat="51.9776285" lon="7.6002720">
+    <tag k="amenity" v="atm"/>
+    <tag k="name" v="Sparda-Bank"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="673268438" lat="51.9247521" lon="7.5233554">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="27"/>
+    <tag k="addr:postcode" v="48163"/>
+    <tag k="addr:street" v="Dülmener Straße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="operator" v="Sparkasse"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="746270314" lat="51.9554323" lon="7.6171092">
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="operator" v="Sparkasse"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="752630245" lat="51.9550316" lon="7.6475101">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="100"/>
+    <tag k="addr:postcode" v="48155"/>
+    <tag k="addr:street" v="Wolbecker Straße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparkasse Münsterland-Ost"/>
+    <tag k="operator" v="Sparkasse Münsterland-Ost"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="859268788" lat="51.9768349" lon="7.6101112">
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Volksbank Münster eG"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="889078513" lat="51.9458141" lon="7.6230757">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="124"/>
+    <tag k="addr:postcode" v="48153"/>
+    <tag k="addr:street" v="Hammer Straße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparkasse Münsterland Ost"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="1011568385" lat="51.9676646" lon="7.5791514">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:country" v="DE"/>
+    <tag k="addr:housenumber" v="2"/>
+    <tag k="addr:postcode" v="48161"/>
+    <tag k="addr:street" v="Rüschhausweg"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="operator" v="Sparkasse Münsterland-Ost"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="1097869948" lat="51.9729856" lon="7.5641574">
+    <tag k="amenity" v="atm"/>
+    <tag k="operator" v="Sparkasse Münsterland Ost"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="1112271116" lat="51.9637724" lon="7.6279340">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:country" v="DE"/>
+    <tag k="addr:housenumber" v="11"/>
+    <tag k="addr:postcode" v="48143"/>
+    <tag k="addr:street" v="Roggenmarkt"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="drive_through" v="no"/>
+    <tag k="name" v="Volksbank"/>
+    <tag k="website" v="http://www.volksbank-muenster.de/"/>
+    <tag k="wheelchair" v="no"/>
+  </node>
+  <node id="1159233462" lat="51.9648891" lon="7.6262486">
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Santander"/>
+    <tag k="operator" v="Santander Bank"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="1274099972" lat="51.9275600" lon="7.6688670">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="449"/>
+    <tag k="addr:postcode" v="48167"/>
+    <tag k="addr:street" v="Albersloher Weg"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="fax" v="+49 251 59840870"/>
+    <tag k="name" v="Sparkasse Münsterland Ost"/>
+    <tag k="opening_hours" v="Mo-Fr 09:00-12:30,14:00-16:30; We 14:00-16:30; Th 14:00-18:00"/>
+    <tag k="phone" v="+49 251 59840800"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+    <tag k="wheelchair:description" v="Kein geeignetes WC."/>
+  </node>
+  <node id="1274113460" lat="51.9511300" lon="7.6696800">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="296"/>
+    <tag k="addr:postcode" v="48155"/>
+    <tag k="addr:street" v="Wolbecker Straße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="1274153354" lat="51.9587956" lon="7.6378358">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:country" v="DE"/>
+    <tag k="addr:housenumber" v="17"/>
+    <tag k="addr:postcode" v="48155"/>
+    <tag k="addr:street" v="Wolbecker Straße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="1274172584" lat="51.9261700" lon="7.6186400">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="12"/>
+    <tag k="addr:postcode" v="48153"/>
+    <tag k="addr:street" v="Rincklakeweg"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="fixme" v="Position überprüfen, evtl. am Einkaufszentrum Berg Fidel"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="1274191015" lat="51.9151539" lon="7.6891531">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="14"/>
+    <tag k="addr:postcode" v="48167"/>
+    <tag k="addr:street" v="Clemens-August-Platz"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="name" v="Sparkasse Münsterland Ost"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="1274252648" lat="52.0016300" lon="7.7100400">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="142"/>
+    <tag k="addr:postcode" v="48157"/>
+    <tag k="addr:street" v="Dorbaumstraße"/>
+    <tag k="amenity" v="atm"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="1274274293" lat="51.9549094" lon="7.5345465">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="2"/>
+    <tag k="addr:postcode" v="48161"/>
+    <tag k="addr:street" v="Havixbecker Straße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="website" v="http://www.sparkasse-muensterland-ost.de/"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="1303408128" lat="51.9667250" lon="7.6181842">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:country" v="DE"/>
+    <tag k="addr:housename" v="Münztor"/>
+    <tag k="addr:housenumber" v="1-3"/>
+    <tag k="addr:postcode" v="48143"/>
+    <tag k="addr:street" v="Münzstraße"/>
+    <tag k="alt_name" v="Sparkasse Münsterland Ost"/>
+    <tag k="amenity" v="atm"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="source" v="Sparkasse Münsterland Ost"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="1320349744" lat="51.9547579" lon="7.5341361">
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Volksbank Münster"/>
+    <tag k="source" v="knowledge"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="1369061865" lat="51.9675468" lon="7.6138276">
+    <tag k="amenity" v="atm"/>
+    <tag k="operator" v="ING-DiBa AG"/>
+  </node>
+  <node id="1423871554" lat="51.9292841" lon="7.5807950">
+    <tag k="amenity" v="atm"/>
+    <tag k="operator" v="Volksbank Münster"/>
+    <tag k="wheelchair" v="limited"/>
+  </node>
+  <node id="1557176725" lat="51.9606944" lon="7.6049184">
+    <tag k="amenity" v="atm"/>
+    <tag k="operator" v="Sparkasse Münsterland Ost"/>
+  </node>
+  <node id="1589492185" lat="51.9522414" lon="7.6252059">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="32-34"/>
+    <tag k="addr:interpolation" v="even"/>
+    <tag k="addr:postcode" v="48153"/>
+    <tag k="addr:street" v="Hammer Straße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="bic" v="GENODEM1MSC"/>
+    <tag k="blz" v="40160050"/>
+    <tag k="fax" v="+49 251 50050299"/>
+    <tag k="name" v="Volksbank Münster eG"/>
+    <tag k="opening_hours" v="Mo-We 09:00-12:30,14:00-17:00; Th 09:00-12:30,14:00-18:00; Fr 09:00-12:30,14:00-15:30"/>
+    <tag k="phone" v="+49 251 5005020"/>
+    <tag k="website" v="https://www.volksbank-muenster.de"/>
+  </node>
+  <node id="1592505431" lat="51.9655054" lon="7.6002275">
+    <tag k="amenity" v="atm"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="operator" v="Sparkasse"/>
+  </node>
+  <node id="1639494355" lat="52.0111710" lon="7.6796081">
+    <tag k="amenity" v="atm"/>
+    <tag k="operator" v="Sparda-Bank"/>
+  </node>
+  <node id="1645535901" lat="51.9630309" lon="7.6295170">
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="HypoVereinsbank"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="1788358529" lat="51.9667458" lon="7.6269729">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:country" v="DE"/>
+    <tag k="addr:housename" v="DKM"/>
+    <tag k="addr:housenumber" v="26"/>
+    <tag k="addr:postcode" v="48143"/>
+    <tag k="addr:street" v="Breul"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="DKM Münster eG"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="1803653589" lat="51.9563092" lon="7.6302386">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="26"/>
+    <tag k="addr:postcode" v="48143"/>
+    <tag k="addr:street" v="Schorlemerstraße"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="name" v="HypoVereinsbank Corporate Banking"/>
+    <tag k="website" v="http://www.hvb.de"/>
+    <tag k="wheelchair" v="limited"/>
+  </node>
+  <node id="2038933732" lat="51.9776318" lon="7.6422563">
+    <tag k="amenity" v="atm"/>
+    <tag k="operator" v="Sparkasse Münsterland Ost"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="2038990177" lat="51.9575059" lon="7.6350057">
+    <tag k="amenity" v="atm"/>
+    <tag k="operator" v="ING diba"/>
+    <tag k="source" v="knowledge"/>
+  </node>
+  <node id="2038995421" lat="51.9570074" lon="7.6336016">
+    <tag k="amenity" v="atm"/>
+    <tag k="operator" v="Volksbank"/>
+    <tag k="source" v="knowledge"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="2039000700" lat="51.9557877" lon="7.6340655">
+    <tag k="addr:housenumber" v="35"/>
+    <tag k="addr:postcode" v="48143"/>
+    <tag k="addr:street" v="Berliner Platz"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Postbank"/>
+  </node>
+  <node id="2049581673" lat="51.9587426" lon="7.6379099">
+    <tag k="amenity" v="atm"/>
+    <tag k="operator" v="Sparkasse"/>
+  </node>
+  <node id="2078804362" lat="51.9609040" lon="7.5965233">
+    <tag k="amenity" v="atm"/>
+    <tag k="operator" v="Deutsche Bank"/>
+  </node>
+  <node id="2095372744" lat="51.9621331" lon="7.6271292">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:country" v="DE"/>
+    <tag k="addr:housenumber" v="41"/>
+    <tag k="addr:postcode" v="48143"/>
+    <tag k="addr:street" v="Domplatz"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="name" v="Bankhaus Lampe KG"/>
+  </node>
+  <node id="2295839567" lat="51.9603455" lon="7.6291231">
+    <tag k="amenity" v="atm"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="2378869835" lat="51.9570828" lon="7.6332588">
+    <tag k="amenity" v="atm"/>
+    <tag k="operator" v="Sparkasse Münsterland Ost"/>
+  </node>
+  <node id="2613364544" lat="51.9273355" lon="7.6690919">
+    <tag k="amenity" v="atm"/>
+    <tag k="opening_hours" v="24/7"/>
+    <tag k="operator" v="Volksbank"/>
+  </node>
+  <node id="2617780258" lat="51.9636154" lon="7.6281490">
+    <tag k="amenity" v="bank"/>
+    <tag k="name" v="Santander Consumer Bank"/>
+  </node>
+  <node id="2618606154" lat="51.9607197" lon="7.6248069">
+    <tag k="amenity" v="bank"/>
+    <tag k="name" v="TARGOBANK"/>
+    <tag k="operator" v="TARGOBANK"/>
+  </node>
+  <node id="2643578334" lat="51.9586155" lon="7.5697516">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:country" v="DE"/>
+    <tag k="addr:housenumber" v="1"/>
+    <tag k="addr:postcode" v="48161"/>
+    <tag k="addr:street" v="Gartenbreie"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="bic" v="GENODEF1S08"/>
+    <tag k="blz" v="40060560"/>
+    <tag k="email" v="info@sparda-ms.de"/>
+    <tag k="fax" v="+49 251 5046599"/>
+    <tag k="name" v="Sparda-Bank"/>
+    <tag k="opening_hours" v="Mo-Th 09:00-18:00; Fr-Sa 09:00-14:00"/>
+    <tag k="operator" v="Sparda-Bank"/>
+    <tag k="pan" v="64045"/>
+    <tag k="phone" v="+49 251 5040"/>
+    <tag k="website" v="http://www.sparda-ms.de/"/>
+  </node>
+  <node id="2644100167" lat="51.9268580" lon="7.6211217">
+    <tag k="amenity" v="bank"/>
+    <tag k="name" v="Sparkasse"/>
+    <tag k="opening_hours" v="Mo-Fr: 09:00-16:00"/>
+  </node>
+  <node id="2649527182" lat="51.9566141" lon="7.6346221">
+    <tag k="amenity" v="atm"/>
+  </node>
+  <node id="2657952798" lat="51.9559688" lon="7.6346543">
+    <tag k="addr:city" v="Münster"/>
+    <tag k="addr:housenumber" v="21"/>
+    <tag k="addr:postcode" v="48143"/>
+    <tag k="addr:street" v="Berliner Platz"/>
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="bic" v="GENODEF1S08"/>
+    <tag k="blz" v="40060560"/>
+    <tag k="email" v="info@sparda-ms.de"/>
+    <tag k="fax" v="+49 251 5046599"/>
+    <tag k="name" v="Sparda-Bank"/>
+    <tag k="phone" v="+49 251 5040"/>
+    <tag k="website" v="www.sparda-ms.de"/>
+  </node>
+  <node id="2659212824" lat="51.9566577" lon="7.6343528">
+    <tag k="amenity" v="atm"/>
+    <tag k="opening_hours" v="24/7"/>
+    <tag k="operator" v="Sparda-Bank"/>
+  </node>
+  <node id="2673008718" lat="51.9440418" lon="7.6303250">
+    <tag k="amenity" v="atm"/>
+    <tag k="operator" v="Volksbank"/>
+  </node>
+  <node id="2680403385" lat="51.9567616" lon="7.6348091">
+    <tag k="amenity" v="bank"/>
+    <tag k="name" v="Sparda-Bank"/>
+  </node>
+  <node id="2835660761" lat="51.9654298" lon="7.6219139">
+    <tag k="amenity" v="atm"/>
+  </node>
+  <node id="2848454552" lat="51.9579320" lon="7.5705037">
+    <tag k="amenity" v="bank"/>
+    <tag k="atm" v="yes"/>
+    <tag k="name" v="Sparda-Bank Service Point"/>
+    <tag k="operator" v="Sparda-Bank Münster eG"/>
+  </node>
+
+</osm>
