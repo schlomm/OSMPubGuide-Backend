@@ -76,12 +76,24 @@
 								$end_open = explode('-', $times)[1];
 								$opening_times[] = array($start_open, $end_open);
 							}
+							else if ( strpos($times, '+') ) {
+								$times = str_replace('+', '', $times);
+								$start_open = $times;
+								$end_open = '03:00';
+								$opening_times[] = array($start_open, $end_open);
+							}
 						}
 					}
 					else {
 						if ( strpos($time, '-') ) {
 							$start_open = explode('-', $time)[0];
 							$end_open = explode('-', $time)[1];
+							$opening_times[] = array($start_open, $end_open);
+						}
+						else if ( strpos($time, '+') ) {
+							$times = str_replace('+', '', $time);
+							$start_open = $time;
+							$end_open = '03:00';
 							$opening_times[] = array($start_open, $end_open);
 						}
 					}
