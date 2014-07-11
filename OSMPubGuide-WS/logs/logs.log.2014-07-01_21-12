@@ -1,0 +1,3 @@
+2014-07-01 21:12:06,803 DEBUG [main] root: Registerd jdbc driver with java application
+2014-07-01 21:12:06,806 DEBUG [main] root: Connecting to database...
+2014-07-01 21:12:06,808 DEBUG [main] root: Goodbye!

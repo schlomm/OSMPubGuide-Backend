@@ -5,7 +5,6 @@
  */
 package de.ifgi.ohbpgiosm;
 
-import de.ifgi.ohbpgiosm.database.PostgreSql;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;

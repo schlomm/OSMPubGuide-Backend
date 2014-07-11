@@ -77,7 +77,7 @@ public abstract class Connector extends Observable implements Runnable{
     
     /**
      * This method calls the protected method setChange() which is needed, to declare that
-     * a change on the object has happened.
+     * a change on the object has happened. To trigger an event on a registered observer.
      */
     public void finish() {
         this.setChanged();

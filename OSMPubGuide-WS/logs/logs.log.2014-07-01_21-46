@@ -1,0 +1,8 @@
+2014-07-01 21:46:50,247 DEBUG [main] root: Loaded property file.
+2014-07-01 21:46:50,252 DEBUG [main] root: postgres
+2014-07-01 21:46:50,253 DEBUG [main] root: jdbc:postgresql://giv-openpubguide.uni-muenster.de:5432/
+2014-07-01 21:46:50,255 DEBUG [main] root: front salmon natural monkey
+2014-07-01 21:46:50,272 DEBUG [main] root: Registerd jdbc driver with java application
+2014-07-01 21:46:50,273 DEBUG [main] root: Connecting to database...
+2014-07-01 21:46:50,942 DEBUG [main] root: Creating database...
+2014-07-01 21:46:50,968 DEBUG [main] root: Goodbye!
