@@ -60,7 +60,7 @@ public class OverpassConnector extends Connector {
                 composeOsmScript(union, amenity);
             }
             ost.addNewPrint();
-            System.out.println(osd);
+            //System.out.println(osd);
             response = HttpClient.getInstance().sendPostRequest(this.hostName, osd.toString());
             this.response = OsmDocument.Factory.parse(response);
         } catch (IOException ex) {

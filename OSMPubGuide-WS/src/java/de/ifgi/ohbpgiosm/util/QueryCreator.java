@@ -110,7 +110,7 @@ public class QueryCreator {
                 case START:
                 case END:
                     ArrayList<Object> list4 = new ArrayList<>();
-                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm"); //TODO might be adapted for seconds
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"); //TODO might be adapted for seconds
                     Date d = formatter.parse(value);
                     list4.add(d);
                     time.put(key, list4);

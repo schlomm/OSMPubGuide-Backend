@@ -6,6 +6,7 @@
 
 package de.ifgi.ohbpgiosm;
 
+import de.ifgi.ohbpgiosm.database.EventDatabaseConnector;
 import java.util.List;
 import java.util.Vector;
 import noNamespace.OsmDocument;
@@ -44,11 +45,11 @@ public class QueryDelegator implements Runnable {
     private void createConnectors() {
         //TODO set the correct connector classes in the future
         
-        //this.overpass_con = new OverpassConnector();
-        //this.eventdb_con = new EventDatabaseConnector();
+        this.overpass_con = new OverpassConnector();
+        this.eventdb_con = new EventDatabaseConnector();
         
-        this.overpass_con = new TestConnector(600000);
-        this.eventdb_con = new TestConnector(900000000);
+        //this.overpass_con = new TestConnector(600000);
+        //this.eventdb_con = new TestConnector(900000000);
     }
     
     private void initConnectors() {

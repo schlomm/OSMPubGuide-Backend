@@ -10,7 +10,13 @@ import de.ifgi.ohbpgiosm.Connector;
 import de.ifgi.ohbpgiosm.Parameter;
 import de.ifgi.ohbpgiosm.Query;
 import de.ifgi.ohbpgiosm.logging.MyLogger;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Properties;
 import noNamespace.OsmDocument;
@@ -43,22 +49,106 @@ public class EventDatabaseConnector extends Connector{
         if (this.queries.isEmpty()) {
             throw new RuntimeException("Queries are empty.");
         }
+        Date start = null;
+        Date end = null;
+        List<String> pubFilterList = null; 
+        List<String> eventFilterList = null;
         
         for(Query query : this.queries){
-            
-            Date start = (Date) query.get(Parameter.START);
-            Date end = (Date) query.get(Parameter.END);
-            // hasHappyHour, hasEntryFee, maximumBeerPrice
-            List<String> pubFilterList = (List<String>) query.get(Parameter.FILTER);
-            // eventType
-            List<String> eventFilterList = (List <String>) query.get(Parameter.EVENT_FILTER);
-            
+            switch (query.getQueryType()) {
+                case TEMPORAL:
+                    start = (Date)query.get(Parameter.START);
+                    end = (Date)query.get(Parameter.END);
+                    break;
+                case ATTRIBUTAL:
+                    pubFilterList = (List<String>) query.get(Parameter.FILTER);
+                    break;
+                case EVENT:
+                    eventFilterList = (List <String>) query.get(Parameter.EVENT_FILTER);
+                    break;
+            }
+
             // TODO case differentiation based on existing start, end .. parameters
             // which SQL statement is created and send to the DB
-            executeQuery("SELECT * FROM pub");            
+                       
         }
+        String sqlQuery = this.createSQLQuery(start, end, pubFilterList, eventFilterList);
+        executeQuery(sqlQuery); 
     }
    
+    protected String createSQLQuery(Date start, Date end, List<String> attr, List<String> e_attr) {
+        String sql = "";
+        boolean entryFee = false;
+        String filterPubSQL = "pub";
+        String filterEventSQL = "temporal_event";
+        String generalFilterSQL = "";
+        
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        
+        if (start != null) {
+            generalFilterSQL = " AND is_open(pub_select.pub_ref, '"+formatter.format(start)+"+02'"; //makes it easier to handle the timezone
+            if (end != null) {
+                generalFilterSQL += ", '"+formatter.format(end)+"+02'";
+            }
+            generalFilterSQL += ")";
+        }
+        
+        // create pub filter
+        if (attr != null && attr.size() > 0) {
+            filterPubSQL = "(SELECT * FROM pub WHERE ";
+            for (String s : attr) {
+                if (s.contains("maximumBeerPrice")) {
+                    String value = s.split("=")[1];
+                    if (filterPubSQL.endsWith("WHERE ")) {
+                        filterPubSQL += "beer_price <= "+value;
+                    } else {
+                        filterPubSQL += " AND beer_price <= "+value;
+                    }
+                }
+                if (s.equalsIgnoreCase("hasHappyHour")) {
+                    if (filterPubSQL.endsWith("WHERE ")) {
+                        filterPubSQL += "happy_hour";
+                    } else {
+                        filterPubSQL += " AND happy_hour";
+                    }
+                }
+                if (s.equalsIgnoreCase("hasEntryFee")) {
+                    entryFee = true;
+                }
+                
+            }
+            filterPubSQL += ")";
+        }
+        
+        //create event filter
+        if (e_attr != null && e_attr.size() > 0) {
+            filterEventSQL = "(Select * FROM temporal_event WHERE ";
+            
+            for (String s : e_attr) {
+                if (s.contains("eventType")) {
+                    String value = s.split("=")[1];
+                    if (filterEventSQL.endsWith("WHERE ")) {
+                        filterEventSQL += "type = '"+value+"'";
+                    } else {
+                        filterEventSQL += " AND '"+value+"' like type";
+                    }
+                }
+                if (entryFee) {
+                    if (filterEventSQL.endsWith("WHERE ")) {
+                        filterEventSQL += "entry_fee";
+                    } else {
+                        filterEventSQL += " AND entry_fee";
+                    }
+                }
+            }
+            filterEventSQL += ")";
+        }
+        
+        sql = "SELECT * FROM "+filterPubSQL+" AS pub_select NATURAL INNER JOIN "+filterEventSQL+" AS event_select WHERE pub_select.pub_ref = event_select.pub_ref"+ generalFilterSQL;
+        
+        return sql;
+    }
     
     private void executeQuery(String query) {
         Connection connection = null;
