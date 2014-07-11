@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package de.ifgi.ohbpgiosm.util;
 
 import de.ifgi.ohbpgiosm.Parameter;
@@ -17,12 +11,13 @@ import java.lang.Float;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
- *
- * @author florian
+ * This class follows the Singleton pattern in order to be created once, when the service is set up on the server. The function of
+ * this class is defined as creating an internal representation of the query and use this to delegate the initial query to different
+ * connected services or data sources.
+ * 
+ * @author Florian Lahn
  */
 public class QueryCreator {
     private static QueryCreator instance = null;
@@ -32,6 +27,11 @@ public class QueryCreator {
         
     }
     
+    /**
+     * Following the Singleton pattern this method either instantiate this class or returns the instance.
+     * 
+     * @return The QueryCreator instance
+     */
     public static QueryCreator getInstance() {
         if (QueryCreator.instance == null) {
             QueryCreator.instance = new QueryCreator();
@@ -42,8 +42,8 @@ public class QueryCreator {
     /**
      * Differentiates the query types based on the submitted parameters.
      * 
-     * @param parameters
-     * @return 
+     * @param parameters a HashMap consiting of the parsed type of the Query parameter and the accoring String value, which is derived by the initial service query
+     * @return A list of queries that are distinguished by their type
      */
     public List<Query> createQueries(HashMap<Parameter,String> parameters) throws ParseException {
         ArrayList<Query> queryList = new ArrayList<>();
@@ -55,8 +55,8 @@ public class QueryCreator {
         
         
         //add parameters to the queries...
-        Set<Parameter> ss = parameters.keySet();
-        for (Parameter key : ss) {
+        Set<Parameter> keys = parameters.keySet();
+        for (Parameter key : keys) {
             String value = parameters.get(key);
             if (value.isEmpty()) continue; //skip the parameter if empty
             
@@ -72,6 +72,9 @@ public class QueryCreator {
                     space.put(key, list1);
                     break;
                 case FILTER:
+                    // the filter string is supposed to have comma separated values
+                    // so we split the String by the character "," and create a
+                    // list of strings for that
                     String[] temp2 = value.split(this.LIST_SEPARATOR);
                     ArrayList<Object> overpass_attr_list = new ArrayList<>();
                     ArrayList<Object> db_attr_list = new ArrayList<>();
@@ -107,7 +110,7 @@ public class QueryCreator {
                 case START:
                 case END:
                     ArrayList<Object> list4 = new ArrayList<>();
-                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm"); //TODO might be adapted for seconds
                     Date d = formatter.parse(value);
                     list4.add(d);
                     time.put(key, list4);
@@ -115,7 +118,7 @@ public class QueryCreator {
             }
         }
         
-        
+        //sort out queries that are not present
         if(!space.isEmpty()) queryList.add(space);
         if(!time.isEmpty()) queryList.add(time);
         if(!attribute.isEmpty()) queryList.add(attribute);
