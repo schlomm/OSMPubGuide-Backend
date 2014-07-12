@@ -309,7 +309,7 @@ public class EventDatabaseConnector extends Connector{
                 String start = df.format(startTime);
                 String end = df.format(endTime);
                 
-                eventType.setStart(startTime);           
+                //eventType.setStart(startTime);           
                 //eventType.setEnd(null);
                 
                 TagType beerPriceTag = pubNode.addNewTag();
