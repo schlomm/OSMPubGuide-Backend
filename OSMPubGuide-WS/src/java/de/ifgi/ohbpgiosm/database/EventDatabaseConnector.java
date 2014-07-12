@@ -308,13 +308,16 @@ public class EventDatabaseConnector extends Connector{
                 DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
                 String start = df.format(startTime);
                 String end = df.format(endTime);
+
+                cal.setTime(startTime);
+                eventType.setStart(cal);
                 
-                //eventType.setStart(startTime);           
-                //eventType.setEnd(null);
+                cal.setTime(endTime);
+                eventType.setEnd(cal);
                 
-                TagType beerPriceTag = pubNode.addNewTag();
-                beerPriceTag.setK("toc");
-                beerPriceTag.setV(df.format(calculateTimeDifference(endTime)));
+                TagType tucTag = pubNode.addNewTag();
+                tucTag.setK("tuc");
+                tucTag.setV(df.format(calculateTimeDifference(endTime)));
             }
             
         }
@@ -326,7 +329,7 @@ public class EventDatabaseConnector extends Connector{
     private long calculateTimeDifference(Date end){
          Calendar cal = new GregorianCalendar();
          Date now = Calendar.getInstance().getTime();
-         long difference = now.getTime() - end.getTime();
+         long difference = (now.getTime() - end.getTime()) / 60000;
 
          return difference; 
 
