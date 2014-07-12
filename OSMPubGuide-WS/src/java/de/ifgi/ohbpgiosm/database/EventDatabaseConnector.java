@@ -13,13 +13,28 @@ import de.ifgi.ohbpgiosm.logging.MyLogger;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
+import noNamespace.EventType;
+import noNamespace.MemberType;
+import noNamespace.NodeType;
 import noNamespace.OsmDocument;
+import noNamespace.OsmType;
+import noNamespace.RelationReferType;
+import noNamespace.RelationType;
+import noNamespace.TagType;
 import org.apache.log4j.*;
 
 /**
@@ -72,8 +87,14 @@ public class EventDatabaseConnector extends Connector{
             // which SQL statement is created and send to the DB
                        
         }
-        String sqlQuery = this.createSQLQuery(start, end, pubFilterList, eventFilterList);
-        executeQuery(sqlQuery); 
+        
+        try {
+            String sqlQuery = this.createSQLQuery(start, end, pubFilterList, eventFilterList);
+            ResultSet rs = executeQuery(sqlQuery);
+            response = resultSetToOsmDoc(rs);
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(EventDatabaseConnector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
     }
    
     protected String createSQLQuery(Date start, Date end, List<String> attr, List<String> e_attr) {
@@ -150,7 +171,7 @@ public class EventDatabaseConnector extends Connector{
         return sql;
     }
     
-    private void executeQuery(String query) {
+    protected ResultSet executeQuery(String query) {
         Connection connection = null;
         Statement statement = null;
         
@@ -167,7 +188,8 @@ public class EventDatabaseConnector extends Connector{
             statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             logger.debug("Query executed.");
-            response = resultSetToOsmDoc(rs);            
+            
+            return rs;          
             
             
         } catch (SQLException se) {
@@ -194,19 +216,120 @@ public class EventDatabaseConnector extends Connector{
         }//end try
         
         logger.debug("Closed database connection");
+        
+        return null;
     }
     
     
     private OsmDocument resultSetToOsmDoc(ResultSet rs) throws SQLException{
         
-        OsmDocument osmDoc = null;
-        
+        OsmDocument osmDoc = OsmDocument.Factory.newInstance();
+        OsmType osmElem = osmDoc.addNewOsm();
+       
+                    
         while (rs.next()) {
-            // parse all values into node structure
-  
+            
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+            ArrayList<String> columnNameList = new ArrayList();
+            
+            for (int i = 1; i <= columnsNumber; i++) {
+                columnNameList.add(rsmd.getColumnName(i));
+            }
+            
+            NodeType pubNode = osmElem.addNewNode();
+            Long pubId = null;
+            if (columnNameList.contains("pub_ref")){
+                Long pubRef = rs.getLong("pub_ref");
+                pubId = pubRef;
+                pubNode.setId(pubRef);
+            }
+            
+            if (columnNameList.contains("beer_price")){
+                Double beerPrice = rs.getDouble("beer_price");
+                TagType beerPriceTag = pubNode.addNewTag();
+                beerPriceTag.setK("price:beer");
+                beerPriceTag.setV(String.valueOf(beerPrice));
+            }
+            
+            if (columnNameList.contains("happy_hour")){
+                Boolean hasHappyHour = rs.getBoolean("happy_hour");
+                TagType happyHourTag = pubNode.addNewTag();
+                happyHourTag.setK("happy_hour");
+                happyHourTag.setV(String.valueOf(hasHappyHour));
+            }       
+            
+            EventType eventType = osmElem.addNewEvent();
+            if (columnNameList.contains("name")){
+                String name = rs.getString("name");
+                TagType eventNameTag = eventType.addNewTag();
+                eventNameTag.setK("name");
+                eventNameTag.setV(name);
+            }
+            
+            if (columnNameList.contains("type")){
+                String type = rs.getString("type");
+                TagType eventTypeTag = eventType.addNewTag();
+                eventTypeTag.setK("type");
+                eventTypeTag.setV(type);
+            }
+            
+            if (columnNameList.contains("description")){
+                String description = rs.getString("description");
+                TagType eventDescriptionTag = eventType.addNewTag();
+                eventDescriptionTag.setK("desciption");
+                eventDescriptionTag.setV(description);
+            }
+            
+            if (columnNameList.contains("event")){
+                Boolean event = rs.getBoolean("event");
+            }
+            
+            if (columnNameList.contains("entry_fee")){
+                String entryFee = rs.getString("entry_fee");
+                TagType eventCostTag = eventType.addNewTag();
+                eventCostTag.setK("cost");
+                eventCostTag.setV(entryFee);
+            }  
+            
+            RelationType relationType = osmElem.addNewRelation();
+            MemberType memberType = relationType.addNewMember();
+            memberType.setRef(pubId); 
+            memberType.setRole("location");
+            memberType.setType(RelationReferType.NODE);
+            
+            // get start and end time of events
+            if (pubId != null){
+                ResultSet openingHours = executeQuery("SELECT start_time, end_time  FROM pub JOIN temporal_event ON pub.pub_ref = temporal_event.pub_ref JOIN opened ON temporal_event.event_id = opened.event_id WHERE pub.pub_ref =" +  pubId.toString());
+                Calendar cal = new GregorianCalendar();
+                Date startTime = openingHours.getDate("start_time", cal);
+                Date endTime = openingHours.getDate("end_time", cal);
+                
+                DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                String start = df.format(startTime);
+                String end = df.format(endTime);
+                
+                eventType.setStart(startTime);           
+                //eventType.setEnd(null);
+                
+                TagType beerPriceTag = pubNode.addNewTag();
+                beerPriceTag.setK("toc");
+                beerPriceTag.setV(df.format(calculateTimeDifference(endTime)));
+            }
+            
         }
         
+        System.out.print(osmDoc.toString());
         return osmDoc;
-    }   
+    }
+    
+    private long calculateTimeDifference(Date end){
+         Calendar cal = new GregorianCalendar();
+         Date now = Calendar.getInstance().getTime();
+         long difference = now.getTime() - end.getTime();
+
+         return difference; 
+
+    }
         
 }

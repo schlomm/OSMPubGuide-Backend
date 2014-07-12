@@ -1,0 +1,7 @@
+2014-07-11 22:04:31,943 DEBUG [main] root: Loaded property file.
+2014-07-11 22:04:32,127 DEBUG [main] root: Registerd jdbc driver with java application
+2014-07-11 22:04:32,128 DEBUG [main] root: Connecting to database...
+2014-07-11 22:04:32,525 DEBUG [main] root: Query executed.
+2014-07-11 22:04:32,525 DEBUG [main] root: org.postgresql.jdbc4.Jdbc4ResultSet@120cb10
+2014-07-11 22:04:32,525 DEBUG [main] root: RESTOOSM
+2014-07-11 22:04:32,853 DEBUG [main] root: Closed database connection
