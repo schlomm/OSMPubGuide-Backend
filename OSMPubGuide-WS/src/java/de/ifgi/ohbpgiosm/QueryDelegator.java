@@ -36,10 +36,12 @@ public class QueryDelegator implements Runnable {
     //TODO set correct return type (OsmDOcument/Document?)
     public OsmDocument getResponse() {
         if (this.rm.hasFinished()) {
-            //return this.rm.merge();
+            this.rm.merge();
+            
+            return this.getResponse();
+        } else {
+            throw new RuntimeException("ResponseMerger hasn't finished");
         }
-        throw new RuntimeException("ResponseMerger hasn't finished");
-        //return null; //TODO change this, throw exception...
     }
     
     private void createConnectors() {
