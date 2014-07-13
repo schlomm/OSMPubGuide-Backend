@@ -266,6 +266,8 @@ public class EventDatabaseConnector extends Connector{
                 Boolean event = rs.getBoolean("event");
                 if (event) {
                     EventType eventType = osmElem.addNewEvent();
+                    int eventId = rs.getInt("event_id");
+                    eventType.setId(eventId);
                     if(columnNameList.contains("start_time")){
                         Calendar cal = new GregorianCalendar();
                         Date startTime = rs.getDate("start_time", cal);
@@ -306,10 +308,12 @@ public class EventDatabaseConnector extends Connector{
                     }
                     
                     RelationType relationType = osmElem.addNewRelation();
+                    relationType.setId(eventId);
                     MemberType memberType = relationType.addNewMember();
                     memberType.setRef(pubId); 
                     memberType.setRole("location");
                     memberType.setType(RelationReferType.NODE);
+                    memberType.setRef(eventId);
                 }
             
             DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");    
