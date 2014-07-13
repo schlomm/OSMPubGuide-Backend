@@ -63,6 +63,9 @@ public class OverpassConnector extends Connector {
             //System.out.println(osd);
             response = HttpClient.getInstance().sendPostRequest(this.hostName, osd.toString());
             this.response = OsmDocument.Factory.parse(response);
+            
+            this.finish();
+            this.notifyObservers();
         } catch (IOException ex) {
             Logger.getLogger(OverpassConnector.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParserConfigurationException ex) {

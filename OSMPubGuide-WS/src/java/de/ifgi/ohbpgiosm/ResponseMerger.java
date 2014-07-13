@@ -53,7 +53,7 @@ public class ResponseMerger implements Observer {
         this.notifies++;
 
         if (this.notifies == this.connectors.size()) { //if all connector have finished their request
-            //this.merge();
+            this.merge();
             this.finished = true;
             Logger.getLogger("ResponseMerger").log(Level.INFO, "All done!");
         }
