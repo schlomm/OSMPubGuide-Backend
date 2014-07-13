@@ -8,6 +8,7 @@ package de.ifgi.ohbpgiosm;
 
 import de.ifgi.ohbpgiosm.database.EventDatabaseConnector;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,17 +27,16 @@ public class EventDBTest extends EventDatabaseConnector{
     }
     
     @Test
-    public void createSQL() throws ParseException{
+    public void createSQL() throws ParseException, SQLException{
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"); //TODO might be adapted for seconds
         Date start = formatter.parse("2014-07-15T19:00:00");
-        //Date end = formatter.parse("2014-07-15T23:00:00");
+        Date end = formatter.parse("2014-07-15T23:00:00");
         List<String> filter = new ArrayList<String>();
         filter.add("maximumBeerPrice=3.0");
-        filter.add("hasHappyHour");
+        //filter.add("hasHappyHour");
         
-        String test1 = this.createSQLQuery(start, null, filter, null);
-        this.executeQuery(test1);
-        
+        String test1 = this.createSQLQuery(start, end, filter, null);
+        executeQuery(test1);
         System.out.print(test1);
     }
 }
