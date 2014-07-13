@@ -92,7 +92,8 @@ public class EventDatabaseConnector extends Connector{
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(EventDatabaseConnector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-            
+        this.finish();
+        this.notifyObservers();
         
     }
    
@@ -266,17 +267,15 @@ public class EventDatabaseConnector extends Connector{
                     if(columnNameList.contains("start_time")){
                         Calendar cal = new GregorianCalendar();
                         Date startTime = rs.getDate("start_time", cal);
-                        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-                        String start = df.format(startTime);
-                       // eventType.setStart(start);
+                        cal.setTime(startTime);
+                        eventType.setStart(cal);
                     }
                     
                     if (columnNameList.contains("end_time")){
                         Calendar cal = new GregorianCalendar();
                         Date endTime = rs.getDate("end_time", cal);
-                        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-                        String end = df.format(endTime);
-                        //eventType.setEnd(end);
+                        cal.setTime(endTime);
+                        eventType.setEnd(cal);
                     }
                     
                     if (columnNameList.contains("name")){

@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/florian/Documents/GitHub/OSMPubGuide-Backend/OSMPubGuide-WS/src/java/de/ifgi/ohbpgiosm/database/PropertyReader.java</file>
+            <file>file:/C:/Users/florian/Documents/GitHub/OSMPubGuide-Backend/OSMPubGuide-WS/src/java/de/ifgi/ohbpgiosm/util/QueryCreator.java</file>
+            <file>file:/C:/Users/florian/Documents/GitHub/OSMPubGuide-Backend/OSMPubGuide-WS/src/java/de/ifgi/ohbpgiosm/QueryDelegator.java</file>
+            <file>file:/C:/Users/florian/Documents/GitHub/OSMPubGuide-Backend/OSMPubGuide-WS/test/de/ifgi/ohbpgiosm/ResponseMergerTest.java</file>
+            <file>file:/C:/Users/florian/Documents/GitHub/OSMPubGuide-Backend/OSMPubGuide-WS/test/de/ifgi/ohbpgiosm/EventDBTest.java</file>
+            <file>file:/C:/Users/florian/Documents/GitHub/OSMPubGuide-Backend/OSMPubGuide-WS/src/java/de/ifgi/ohbpgiosm/ResponseMerger.java</file>
+        </group>
     </open-files>
 </project-private>
