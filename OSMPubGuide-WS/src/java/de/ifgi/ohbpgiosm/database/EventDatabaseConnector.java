@@ -309,11 +309,16 @@ public class EventDatabaseConnector extends Connector{
                     
                     RelationType relationType = osmElem.addNewRelation();
                     relationType.setId(eventId);
-                    MemberType memberType = relationType.addNewMember();
-                    memberType.setRef(pubId); 
-                    memberType.setRole("location");
-                    memberType.setType(RelationReferType.NODE);
-                    memberType.setRef(eventId);
+                    
+                    MemberType pubMemberType = relationType.addNewMember();
+                    pubMemberType.setRef(pubId); 
+                    pubMemberType.setRole("location");
+                    pubMemberType.setType(RelationReferType.NODE);
+                    
+                    MemberType eventMemberType = relationType.addNewMember();
+                    eventMemberType.setRef(eventId);
+                    eventMemberType.setRole("event");
+                    eventMemberType.setType(RelationReferType.EVENT);
                 }
             
             DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");    
