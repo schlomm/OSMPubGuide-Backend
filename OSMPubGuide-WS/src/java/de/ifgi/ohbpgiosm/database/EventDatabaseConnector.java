@@ -22,10 +22,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 import noNamespace.EventType;
 import noNamespace.MemberType;
@@ -61,40 +58,42 @@ public class EventDatabaseConnector extends Connector{
     @Override
     public void run() {
         
-        if (this.queries.isEmpty()) {
-            throw new RuntimeException("Queries are empty.");
-        }
-        Date start = null;
-        Date end = null;
-        List<String> pubFilterList = null; 
-        List<String> eventFilterList = null;
-        
-        for(Query query : this.queries){
-            switch (query.getQueryType()) {
-                case TEMPORAL:
-                    start = (Date)query.get(Parameter.START);
-                    end = (Date)query.get(Parameter.END);
-                    break;
-                case ATTRIBUTAL:
-                    pubFilterList = (List<String>) query.get(Parameter.FILTER);
-                    break;
-                case EVENT:
-                    eventFilterList = (List <String>) query.get(Parameter.EVENT_FILTER);
-                    break;
-            }
-
-            // TODO case differentiation based on existing start, end .. parameters
-            // which SQL statement is created and send to the DB
-                       
-        }
-        
         try {
+            if (this.queries.isEmpty()) {
+                throw new RuntimeException("Queries are empty.");
+            }
+            Date start = null;
+            Date end = null;
+            List<String> pubFilterList = null;
+            List<String> eventFilterList = null;                       
+            
+            for(Query query : this.queries){
+                switch (query.getQueryType()) {
+                    case TEMPORAL:
+                        start = (Date)query.get(Parameter.START);
+                        end = (Date)query.get(Parameter.END);
+                        break;
+                    case ATTRIBUTAL:
+                        pubFilterList = (List<String>) query.get(Parameter.FILTER);
+                        break;
+                    case EVENT:
+                        eventFilterList = (List <String>) query.get(Parameter.EVENT_FILTER);
+                        break;
+                }
+                
+                // TODO case differentiation based on existing start, end .. parameters
+                // which SQL statement is created and send to the DB
+                
+            }
+            
+            
             String sqlQuery = this.createSQLQuery(start, end, pubFilterList, eventFilterList);
-            ResultSet rs = executeQuery(sqlQuery);
-            response = resultSetToOsmDoc(rs);
+            executeQuery(sqlQuery);
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(EventDatabaseConnector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+            
+        
     }
    
     protected String createSQLQuery(Date start, Date end, List<String> attr, List<String> e_attr) {
@@ -106,6 +105,7 @@ public class EventDatabaseConnector extends Connector{
         
         
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
         
         if (start != null) {
             generalFilterSQL = " AND is_open(pub_select.pub_ref, '"+formatter.format(start)+"+02'"; //makes it easier to handle the timezone
@@ -166,12 +166,12 @@ public class EventDatabaseConnector extends Connector{
             filterEventSQL += ")";
         }
         
-        sql = "SELECT * FROM "+filterPubSQL+" AS pub_select NATURAL INNER JOIN "+filterEventSQL+" AS event_select WHERE pub_select.pub_ref = event_select.pub_ref"+ generalFilterSQL;
+        sql = "SELECT * FROM "+filterPubSQL+" AS pub_select NATURAL INNER JOIN "+filterEventSQL+" AS event_select NATURAL INNER JOIN opened WHERE pub_select.pub_ref = event_select.pub_ref"+ generalFilterSQL + "AND start_time::date ='"+ dateFormatter.format(start)+"'";
         
         return sql;
     }
     
-    protected ResultSet executeQuery(String query) {
+    protected void executeQuery(String query) throws SQLException {
         Connection connection = null;
         Statement statement = null;
         
@@ -189,7 +189,11 @@ public class EventDatabaseConnector extends Connector{
             ResultSet rs = statement.executeQuery(query);
             logger.debug("Query executed.");
             
-            return rs;          
+            response = resultSetToOsmDoc(rs);
+            
+            //statement = connection.createStatement();
+            //ResultSet rs2 = statement.executeQuery(SELECT start_time, end_time  FROM pub JOIN temporal_event ON pub.pub_ref = temporal_event.pub_ref JOIN opened ON temporal_event.event_id = opened.event_id WHERE pub.pub_ref =" +  pubId.toString());
+            logger.debug("Query executed.");
             
             
         } catch (SQLException se) {
@@ -216,17 +220,13 @@ public class EventDatabaseConnector extends Connector{
         }//end try
         
         logger.debug("Closed database connection");
-        
-        return null;
-    }
+    }  
     
     
-    private OsmDocument resultSetToOsmDoc(ResultSet rs) throws SQLException{
-        
+    protected OsmDocument resultSetToOsmDoc(ResultSet rs) throws SQLException{
         OsmDocument osmDoc = OsmDocument.Factory.newInstance();
-        OsmType osmElem = osmDoc.addNewOsm();
-       
-                    
+        OsmType osmElem = osmDoc.addNewOsm();       
+        
         while (rs.next()) {
             
             ResultSetMetaData rsmd = rs.getMetaData();
@@ -259,65 +259,64 @@ public class EventDatabaseConnector extends Connector{
                 happyHourTag.setV(String.valueOf(hasHappyHour));
             }       
             
-            EventType eventType = osmElem.addNewEvent();
-            if (columnNameList.contains("name")){
-                String name = rs.getString("name");
-                TagType eventNameTag = eventType.addNewTag();
-                eventNameTag.setK("name");
-                eventNameTag.setV(name);
-            }
-            
-            if (columnNameList.contains("type")){
-                String type = rs.getString("type");
-                TagType eventTypeTag = eventType.addNewTag();
-                eventTypeTag.setK("type");
-                eventTypeTag.setV(type);
-            }
-            
-            if (columnNameList.contains("description")){
-                String description = rs.getString("description");
-                TagType eventDescriptionTag = eventType.addNewTag();
-                eventDescriptionTag.setK("desciption");
-                eventDescriptionTag.setV(description);
-            }
-            
             if (columnNameList.contains("event")){
                 Boolean event = rs.getBoolean("event");
-            }
+                if (event) {
+                    EventType eventType = osmElem.addNewEvent();
+                    if(columnNameList.contains("start_time")){
+                        Calendar cal = new GregorianCalendar();
+                        Date startTime = rs.getDate("start_time", cal);
+                        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                        String start = df.format(startTime);
+                       // eventType.setStart(start);
+                    }
+                    
+                    if (columnNameList.contains("end_time")){
+                        Calendar cal = new GregorianCalendar();
+                        Date endTime = rs.getDate("end_time", cal);
+                        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                        String end = df.format(endTime);
+                        //eventType.setEnd(end);
+                    }
+                    
+                    if (columnNameList.contains("name")){
+                        String name = rs.getString("name");
+                        TagType eventNameTag = eventType.addNewTag();
+                        eventNameTag.setK("name");
+                        eventNameTag.setV(name);
+                    }
+                    if (columnNameList.contains("type")){
+                        String type = rs.getString("type");
+                        TagType eventTypeTag = eventType.addNewTag();
+                        eventTypeTag.setK("type");
+                        eventTypeTag.setV(type);
+                    }
+                    if (columnNameList.contains("description")){
+                        String description = rs.getString("description");
+                        TagType eventDescriptionTag = eventType.addNewTag();
+                        eventDescriptionTag.setK("desciption");
+                        eventDescriptionTag.setV(description);
+                    }
+                    if (columnNameList.contains("entry_fee")){
+                        String entryFee = rs.getString("entry_fee");
+                        TagType eventCostTag = eventType.addNewTag();
+                        eventCostTag.setK("cost");
+                        eventCostTag.setV(entryFee);
+                    }
+                    
+                    RelationType relationType = osmElem.addNewRelation();
+                    MemberType memberType = relationType.addNewMember();
+                    memberType.setRef(pubId); 
+                    memberType.setRole("location");
+                    memberType.setType(RelationReferType.NODE);
+                }
             
-            if (columnNameList.contains("entry_fee")){
-                String entryFee = rs.getString("entry_fee");
-                TagType eventCostTag = eventType.addNewTag();
-                eventCostTag.setK("cost");
-                eventCostTag.setV(entryFee);
-            }  
+            DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");    
+            TagType tucTag = pubNode.addNewTag();
+            tucTag.setK("tuc");
+            tucTag.setV(df.format(rs.getDate("end_time")));
             
-            RelationType relationType = osmElem.addNewRelation();
-            MemberType memberType = relationType.addNewMember();
-            memberType.setRef(pubId); 
-            memberType.setRole("location");
-            memberType.setType(RelationReferType.NODE);
-            
-            // get start and end time of events
-            if (pubId != null){
-                ResultSet openingHours = executeQuery("SELECT start_time, end_time  FROM pub JOIN temporal_event ON pub.pub_ref = temporal_event.pub_ref JOIN opened ON temporal_event.event_id = opened.event_id WHERE pub.pub_ref =" +  pubId.toString());
-                Calendar cal = new GregorianCalendar();
-                Date startTime = openingHours.getDate("start_time", cal);
-                Date endTime = openingHours.getDate("end_time", cal);
-                
-                DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-                String start = df.format(startTime);
-                String end = df.format(endTime);
-                
-                //eventType.setStart(startTime);           
-                //eventType.setEnd(null);
-                
-                TagType beerPriceTag = pubNode.addNewTag();
-                beerPriceTag.setK("toc");
-                beerPriceTag.setV(df.format(calculateTimeDifference(endTime)));
-            }
-            
-        }
+        }}
         
         System.out.print(osmDoc.toString());
         return osmDoc;
@@ -326,10 +325,9 @@ public class EventDatabaseConnector extends Connector{
     private long calculateTimeDifference(Date end){
          Calendar cal = new GregorianCalendar();
          Date now = Calendar.getInstance().getTime();
-         long difference = now.getTime() - end.getTime();
-
+         long difference = (now.getTime() - end.getTime()) / 60000;
+         logger.debug(String.valueOf(difference));
          return difference; 
 
     }
-        
 }
