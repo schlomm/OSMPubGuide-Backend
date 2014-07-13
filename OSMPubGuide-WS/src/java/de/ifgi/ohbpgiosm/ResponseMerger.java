@@ -94,9 +94,9 @@ public class ResponseMerger implements Observer {
     private void getConnectorsResponse() {
         for (Connector c: this.connectors) {
             if (c instanceof EventDatabaseConnector) {
-                this.osmResponse = c.getResponse();
-            } else if (c instanceof OverpassConnector) {
                 this.dbResponse = c.getResponse();
+            } else if (c instanceof OverpassConnector) {
+                this.osmResponse = c.getResponse();
             }
         }
     }
@@ -115,7 +115,6 @@ public class ResponseMerger implements Observer {
         for( NodeType db_node : nodes) {
             try {
                 NodeType osm_node = this.findNode(db_node.getId(), this.osmResponse);
-                //System.out.println(osm_node);
                 //look for corresponces
                 
                 if (osm_node != null) {
@@ -157,7 +156,7 @@ public class ResponseMerger implements Observer {
         //add nodes to mergedResponse
         
         //get the relations from the db doc
-        List<RelationType> rels = Arrays.asList(this.dbResponse.getOsm().getRelationArray());
+        List<RelationType> rels = (List<RelationType>)Arrays.asList(this.dbResponse.getOsm().getRelationArray());
         List<RelationType> r_match = new ArrayList<RelationType>();
         List<EventType> events = new ArrayList<>();
         
@@ -167,17 +166,13 @@ public class ResponseMerger implements Observer {
                 //check at each relation if the node is contained in the mergedDocument (new one)
                 // this means looking for the member with type "node"
                 long node_ref = this.getRelationLocationID(rt, this.dbResponse);
-                System.out.println(node_ref);
                 
                 // if node is contained then add the relation and the event
                 if (node_ref > 0) {
                     r_match.add(rt); //put into matches for relation
                     //this.copy(rt, this.mergedResponse);
                     EventType[] r_events = this.getEventsForRelation(rt, this.dbResponse);
-                    
-                    /*for (int i = 0; i < r_events.length; i++) {
-                        this.copy(r_events[i], this.mergedResponse);
-                    }*/
+
                     events.addAll((List<EventType>)Arrays.asList(r_events));
                 }
                 //note: the event has to be in, because otherwise there would not have been a relation
@@ -186,26 +181,12 @@ public class ResponseMerger implements Observer {
                 continue;
             }
         }
-        /*
-        EventType[] ets = new EventType[events.size()];
-        for (int i = 0; i < events.size(); i++) {
-            ets[i] = events.get(i);
-        }
-        
-        RelationType[] rts = new RelationType[r_match.size()];
-        for (int i = 0; i < r_match.size(); i++) {
-            rts[i] = r_match.get(i);
-        } 
-        */
-        
         for (EventType et : events) {
             this.copy(et, this.mergedResponse);
         }
         for (RelationType rt: r_match) {
             this.copy(rt,this.mergedResponse);
         }
-        //this.mergedResponse.getOsm().setEventArray(ets);
-        //this.mergedResponse.getOsm().setRelationArray(rts);
     }
     
     private long getRelationLocationID(RelationType rt, OsmDocument doc) throws XmlException {
@@ -307,21 +288,4 @@ public class ResponseMerger implements Observer {
     public OsmDocument getMergedResponse() {
         return this.mergedResponse;
     }
-
-    /**
-     * ***********************************************************************
-     */
-    /* TESTING PURPOSE 
-     /***************************************************************************/
-    //just for testing purpose
-    /*
-    public void addTestOsmData(Document response) {
-        this.osmResponse = response;
-    }
-
-    //just for testing purpose
-    public void addTestDbData(Document response) {
-        this.dbResponse = response;
-    }
-    */
 }
