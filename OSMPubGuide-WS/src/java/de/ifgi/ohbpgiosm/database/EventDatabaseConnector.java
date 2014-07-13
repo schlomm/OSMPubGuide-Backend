@@ -71,7 +71,9 @@ public class EventDatabaseConnector extends Connector{
                 switch (query.getQueryType()) {
                     case TEMPORAL:
                         start = ((List<Date>)query.get(Parameter.START)).get(0);
-                        end = ((List<Date>)query.get(Parameter.END)).get(0);
+                        if(query.containsKey(Parameter.END)) {
+                            end = ((List<Date>)query.get(Parameter.END)).get(0);
+                        }
                         break;
                     case ATTRIBUTAL:
                         pubFilterList = (List<String>) query.get(Parameter.FILTER);
