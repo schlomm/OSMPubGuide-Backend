@@ -75,14 +75,8 @@ public class ResponseMerger implements Observer {
     }
 
     public void merge() {
+        this.getConnectorsResponse();
 
-        for (Connector c: this.connectors) {
-            if (c instanceof EventDatabaseConnector) {
-                this.osmResponse = c.getResponse();
-            } else if (c instanceof OverpassConnector) {
-                this.dbResponse = c.getResponse();
-            }
-        }
         
         if (this.osmResponse == null) {
             throw new RuntimeException("Overpass connector was not set");
@@ -98,14 +92,12 @@ public class ResponseMerger implements Observer {
 
     //TODO: enable database connector when ready
     private void getConnectorsResponse() {
-        for (int i = 0; i < this.connectors.size(); i++) {
-            System.out.println(connectors.get(i).getClass());
-            if (connectors.get(i) instanceof OverpassConnector) {
-                //this.osmResponse = connectors.get(i).getResponse();
-            } /*else if(connectors.get(i) instanceof PostgreSql){
-             this.dbResponse = connectors.get(i).getResponse();
-             }*/
-
+        for (Connector c: this.connectors) {
+            if (c instanceof EventDatabaseConnector) {
+                this.osmResponse = c.getResponse();
+            } else if (c instanceof OverpassConnector) {
+                this.dbResponse = c.getResponse();
+            }
         }
     }
     

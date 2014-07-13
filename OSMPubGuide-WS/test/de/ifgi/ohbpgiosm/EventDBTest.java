@@ -7,11 +7,8 @@
 package de.ifgi.ohbpgiosm;
 
 import de.ifgi.ohbpgiosm.database.EventDatabaseConnector;
-<<<<<<< HEAD
-=======
 import java.sql.ResultSet;
 import java.sql.SQLException;
->>>>>>> 35a39886bb78dc4493c49d8c8b6995b38b2aba05
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,9 +48,7 @@ public class EventDBTest extends EventDatabaseConnector{
         List<String> filter = new ArrayList<String>();
         filter.add("maximumBeerPrice=3.0");
         //filter.add("hasHappyHour");
-        
-<<<<<<< HEAD
-        System.out.println(test1);
+
     }
     
     @Test
@@ -71,10 +66,9 @@ public class EventDBTest extends EventDatabaseConnector{
         et.setStart(c);
         
         System.out.println(doc);
-=======
-        String test1 = this.createSQLQuery(start, end, filter, null);
-        executeQuery(test1);
-        System.out.print(test1);
->>>>>>> 35a39886bb78dc4493c49d8c8b6995b38b2aba05
+      //  String test1 = this.createSQLQuery(start, end, filter, null);
+        //executeQuery(test1);
+       // System.out.print(test1);
+
     }
 }

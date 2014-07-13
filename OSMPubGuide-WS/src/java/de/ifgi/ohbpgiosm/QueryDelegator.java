@@ -38,7 +38,7 @@ public class QueryDelegator implements Runnable {
         if (this.rm.hasFinished()) {
             this.rm.merge();
             
-            return this.getResponse();
+            return this.rm.getMergedResponse();
         } else {
             throw new RuntimeException("ResponseMerger hasn't finished");
         }
@@ -49,9 +49,7 @@ public class QueryDelegator implements Runnable {
         
         this.overpass_con = new OverpassConnector();
         this.eventdb_con = new EventDatabaseConnector();
-        
-        //this.overpass_con = new TestConnector(600000);
-        //this.eventdb_con = new TestConnector(900000000);
+
     }
     
     private void initConnectors() {
