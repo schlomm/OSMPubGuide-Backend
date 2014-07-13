@@ -32,7 +32,7 @@ import org.xml.sax.SAXException;
 public class OverpassConnector extends Connector {
 
     private final String hostName = "http://overpass-api.de/api/interpreter";
-    private final List<String> amenities = Arrays.asList("pub", "nightclub", "bar");
+    private final List<String> amenities = Arrays.asList("pub", "nightclub", "bar", "cafe");
 
     /**
      * Constructor

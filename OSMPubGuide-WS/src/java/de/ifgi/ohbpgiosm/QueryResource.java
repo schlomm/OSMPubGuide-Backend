@@ -89,6 +89,7 @@ public class QueryResource {
             
             t.start();
             t.join();
+            
             OsmDocument osm = delegator.getResponse();
 
             return osm.toString();

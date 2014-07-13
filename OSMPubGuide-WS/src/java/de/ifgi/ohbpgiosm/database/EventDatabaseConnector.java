@@ -70,8 +70,8 @@ public class EventDatabaseConnector extends Connector{
             for(Query query : this.queries){
                 switch (query.getQueryType()) {
                     case TEMPORAL:
-                        start = (Date)query.get(Parameter.START);
-                        end = (Date)query.get(Parameter.END);
+                        start = ((List<Date>)query.get(Parameter.START)).get(0);
+                        end = ((List<Date>)query.get(Parameter.END)).get(0);
                         break;
                     case ATTRIBUTAL:
                         pubFilterList = (List<String>) query.get(Parameter.FILTER);
@@ -89,11 +89,13 @@ public class EventDatabaseConnector extends Connector{
             
             String sqlQuery = this.createSQLQuery(start, end, pubFilterList, eventFilterList);
             executeQuery(sqlQuery);
+            
+            this.finish();
+            this.notifyObservers();
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(EventDatabaseConnector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        this.finish();
-        this.notifyObservers();
+        
         
     }
    
@@ -190,7 +192,7 @@ public class EventDatabaseConnector extends Connector{
             ResultSet rs = statement.executeQuery(query);
             logger.debug("Query executed.");
             
-            response = resultSetToOsmDoc(rs);
+            this.response = resultSetToOsmDoc(rs);
             
             //statement = connection.createStatement();
             //ResultSet rs2 = statement.executeQuery(SELECT start_time, end_time  FROM pub JOIN temporal_event ON pub.pub_ref = temporal_event.pub_ref JOIN opened ON temporal_event.event_id = opened.event_id WHERE pub.pub_ref =" +  pubId.toString());
