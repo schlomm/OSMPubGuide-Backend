@@ -72,18 +72,15 @@ public class EventDatabaseConnector extends Connector{
             for(Query query : this.queries){
                 switch (query.getQueryType()) {
                     case TEMPORAL:
-                        System.out.println("Found Temporal Query");
                         start = ((List<Date>)query.get(Parameter.START)).get(0);
                         if(query.containsKey(Parameter.END)) {
                             end = ((List<Date>)query.get(Parameter.END)).get(0);
                         }
                         break;
                     case ATTRIBUTAL:
-                        System.out.println("Found Attribute Query");
                         pubFilterList = (List<String>) query.get(Parameter.FILTER);
                         break;
                     case EVENT:
-                        System.out.println("Found Event Query");
                         eventFilterList = (List <String>) query.get(Parameter.EVENT_FILTER);
                         break;
                 }
@@ -145,6 +142,7 @@ public class EventDatabaseConnector extends Connector{
                 }
             }
             filterPubSQL += ")";
+            if (filterPubSQL.equalsIgnoreCase("(SELECT * FROM pub WHERE )")) filterPubSQL = "pub";
         }
         
         //create event filter
@@ -160,22 +158,23 @@ public class EventDatabaseConnector extends Connector{
                         filterEventSQL += " AND '"+value+"' like type";
                     }
                 }
-                if (entryFee) {
-                    if (filterEventSQL.endsWith("WHERE ")) {
-                        filterEventSQL += "entry_fee";
-                    } else {
-                        filterEventSQL += " AND entry_fee";
-                    }
+                if (filterEventSQL.endsWith("WHERE ")) {
+                    filterEventSQL += "event";
+                } else {
+                    filterEventSQL += " AND event";
                 }
-                filterEventSQL += " AND event";
+                
             }
             filterEventSQL += ")";
         }
         
-        sql = "SELECT * FROM "+filterPubSQL+" AS pub_select NATURAL INNER JOIN "+filterEventSQL+" AS event_select NATURAL INNER JOIN opened WHERE pub_select.pub_ref = event_select.pub_ref"+ generalFilterSQL + "AND start_time::date ='"+ dateFormatter.format(start)+"'";
+        if (entryFee) {
+            generalFilterSQL += " AND not('0' like entry_fee OR '' like entry_fee)";
+        }
+        
+        sql = "SELECT * FROM "+filterPubSQL+" AS pub_select NATURAL INNER JOIN "+filterEventSQL+" AS event_select NATURAL INNER JOIN opened WHERE pub_select.pub_ref = event_select.pub_ref"+ generalFilterSQL + " AND start_time::date ='"+ dateFormatter.format(start)+"'";
         logger.debug("SQL query string: " + sql);
         
-        System.out.println(sql);
         return sql;
     }
     
