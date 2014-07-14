@@ -175,6 +175,7 @@ public class EventDatabaseConnector extends Connector{
         sql = "SELECT * FROM "+filterPubSQL+" AS pub_select NATURAL INNER JOIN "+filterEventSQL+" AS event_select NATURAL INNER JOIN opened WHERE pub_select.pub_ref = event_select.pub_ref"+ generalFilterSQL + "AND start_time::date ='"+ dateFormatter.format(start)+"'";
         logger.debug("SQL query string: " + sql);
         
+        System.out.println(sql);
         return sql;
     }
     
