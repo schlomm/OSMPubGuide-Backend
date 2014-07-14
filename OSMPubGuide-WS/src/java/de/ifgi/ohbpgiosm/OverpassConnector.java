@@ -32,7 +32,7 @@ import org.xml.sax.SAXException;
 public class OverpassConnector extends Connector {
 
     private final String hostName = "http://overpass-api.de/api/interpreter";
-    private final List<String> amenities = Arrays.asList("pub", "nightclub", "bar");
+    private final List<String> amenities = Arrays.asList("pub", "nightclub", "bar", "cafe");
 
     /**
      * Constructor
@@ -60,9 +60,12 @@ public class OverpassConnector extends Connector {
                 composeOsmScript(union, amenity);
             }
             ost.addNewPrint();
-            System.out.println(osd);
+            //System.out.println(osd);
             response = HttpClient.getInstance().sendPostRequest(this.hostName, osd.toString());
             this.response = OsmDocument.Factory.parse(response);
+            
+            this.finish();
+            this.notifyObservers();
         } catch (IOException ex) {
             Logger.getLogger(OverpassConnector.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParserConfigurationException ex) {

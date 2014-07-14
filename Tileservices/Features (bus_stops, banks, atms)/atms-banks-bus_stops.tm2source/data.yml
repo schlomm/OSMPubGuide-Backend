@@ -1,0 +1,44 @@
+_prefs: 
+  disabled: []
+  inspector: false
+  saveCenter: true
+attribution: ''
+center: 
+  - 7.633094787597655
+  - 51.94384160969976
+  - 12
+description: ''
+Layer: 
+  - id: bus_stops
+    Datasource: 
+      file: /home/openpubguideadmin/ma-tiles/bus_stops.geojson
+      layer: OGRGeoJSON
+      type: ogr
+    description: bus-stops
+    fields: 
+      id: Number
+      bus: String
+      highway: String
+      name: String
+      public_transport: String
+    properties: 
+      "buffer-size": 8
+    srs: +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs
+  - id: atms_banks
+    Datasource: 
+      file: /home/openpubguideadmin/ma-tiles/atms_banks.geojson
+      layer: OGRGeoJSON
+      type: ogr
+    description: atms_banks
+    fields: 
+      id: Number
+      amenity: String
+      atm: String
+      name: String
+      operator: String
+    properties: 
+      "buffer-size": 8
+    srs: +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs
+maxzoom: 22
+minzoom: 0
+name: atms-banks-bus_stops

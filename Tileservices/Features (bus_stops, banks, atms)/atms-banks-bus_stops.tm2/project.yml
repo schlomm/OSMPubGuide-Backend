@@ -1,0 +1,27 @@
+_prefs: 
+  baselayer: ''
+  saveCenter: true
+_properties: 
+  bridge: 
+    "group-by": layer
+attribution: "<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> <a class='mapbox-improve-map' href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>"
+bounds: 
+  - -180
+  - -85.0511
+  - 180
+  - 85.0511
+center: 
+  - 7.6142120361328125
+  - 51.93918538346127
+  - 12
+description: ''
+format: "png8:m=h"
+interactivity_layer: ''
+layers: null
+maxzoom: 22
+minzoom: 0
+name: atms-banks-bus_stops
+source: "tmsource:///home/openpubguideadmin/ma-tiles/atms-banks-bus_stops.tm2source"
+styles: 
+  - style.mss
+template: ''

@@ -1,0 +1,16 @@
+2014-07-13 13:47:04,140 DEBUG [main] root: Loaded property file.
+2014-07-13 13:47:04,306 DEBUG [main] root: Registerd jdbc driver with java application
+2014-07-13 13:47:04,306 DEBUG [main] root: Connecting to database...
+2014-07-13 13:47:04,743 DEBUG [main] root: Query executed.
+2014-07-13 13:47:05,078 DEBUG [main] root: -3492
+2014-07-13 13:47:05,080 DEBUG [main] root: -3492
+2014-07-13 13:47:05,115 DEBUG [main] root: Query executed.
+2014-07-13 13:47:05,115 DEBUG [main] root: Closed database connection
+2014-07-13 13:47:39,319 DEBUG [main] root: Loaded property file.
+2014-07-13 13:47:39,485 DEBUG [main] root: Registerd jdbc driver with java application
+2014-07-13 13:47:39,485 DEBUG [main] root: Connecting to database...
+2014-07-13 13:47:39,934 DEBUG [main] root: Query executed.
+2014-07-13 13:47:40,242 DEBUG [main] root: -209539758
+2014-07-13 13:47:40,244 DEBUG [main] root: -209539756
+2014-07-13 13:47:40,279 DEBUG [main] root: Query executed.
+2014-07-13 13:47:40,280 DEBUG [main] root: Closed database connection

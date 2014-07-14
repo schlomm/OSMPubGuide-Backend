@@ -9,10 +9,12 @@ import de.ifgi.ohbpgiosm.util.QueryCreator;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Logger;
 import org.junit.Test;
 
 import java.io.*;
+import noNamespace.OsmDocument;
+import org.apache.xmlbeans.XmlOptions;
+import org.junit.Assert;
 
 /**
  *
@@ -37,7 +39,14 @@ public class OverpassConnectorTest {
             overpassConnector.addQuery(q);
         }
         overpassConnector.sendRequest();
-        System.out.println(overpassConnector.getResponse());
+        XmlOptions opts = new XmlOptions();
+        opts.setCharacterEncoding("UTF-8");
+        OsmDocument osmd = overpassConnector.getResponse();
+        
+        
+        //System.out.print(overpassConnector.getResponse().validate(opts));
+        Assert.assertTrue(overpassConnector.getResponse().validate()); //TODO fix OSM library to accept note and meta elements
+        //System.out.print(osmd);
         //saveAsFile(overpassConnector, "txt");
     }
 

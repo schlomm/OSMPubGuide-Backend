@@ -1,0 +1,6 @@
+2014-07-13 13:43:57,750 DEBUG [main] root: Loaded property file.
+2014-07-13 13:43:57,924 DEBUG [main] root: Registerd jdbc driver with java application
+2014-07-13 13:43:57,924 DEBUG [main] root: Connecting to database...
+2014-07-13 13:43:58,405 DEBUG [main] root: Query executed.
+2014-07-13 13:43:58,759 DEBUG [main] root: Query executed.
+2014-07-13 13:43:58,759 DEBUG [main] root: Closed database connection

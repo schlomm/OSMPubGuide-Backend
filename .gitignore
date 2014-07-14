@@ -6,3 +6,4 @@
 /OSMPubGuide-WS/build/
 /OSMPubGuide-WS/dist/
 Diagrams/Webservice/ws-class.dia~
+OSMPubGuide-WS/src/java/de/ifgi/ohbpgiosm/database/dbCredentials.properties

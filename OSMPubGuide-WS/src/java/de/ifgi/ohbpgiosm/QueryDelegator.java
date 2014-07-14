@@ -6,6 +6,7 @@
 
 package de.ifgi.ohbpgiosm;
 
+import de.ifgi.ohbpgiosm.database.EventDatabaseConnector;
 import java.util.List;
 import java.util.Vector;
 import noNamespace.OsmDocument;
@@ -34,21 +35,22 @@ public class QueryDelegator implements Runnable {
     
     //TODO set correct return type (OsmDOcument/Document?)
     public OsmDocument getResponse() {
+        
+        
         if (this.rm.hasFinished()) {
-            //return this.rm.merge();
+            //this.rm.merge();
+            return this.rm.getMergedResponse();
+        } else {
+            throw new RuntimeException("ResponseMerger hasn't finished");
         }
-        throw new RuntimeException("ResponseMerger hasn't finished");
-        //return null; //TODO change this, throw exception...
     }
     
     private void createConnectors() {
         //TODO set the correct connector classes in the future
         
-        //this.overpass_con = new OverpassConnector();
-        //this.eventdb_con = new EventDatabaseConnector();
-        
-        this.overpass_con = new TestConnector(600000);
-        this.eventdb_con = new TestConnector(900000000);
+        this.overpass_con = new OverpassConnector();
+        this.eventdb_con = new EventDatabaseConnector();
+
     }
     
     private void initConnectors() {
