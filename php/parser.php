@@ -1,4 +1,5 @@
 <?php
+if ( isset($_GET['pass']) && $_GET['pass'] == '' ) {
 	$db_connection = pg_connect("") or die('Connection failed: ' . pg_last_error());
 	
 	$osm_api_link = 'http://api.openstreetmap.org/api/0.6/';
@@ -171,4 +172,5 @@
 			}
 		}
 	}
+}
 ?>
