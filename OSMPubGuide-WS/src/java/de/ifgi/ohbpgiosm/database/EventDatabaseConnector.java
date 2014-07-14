@@ -70,15 +70,18 @@ public class EventDatabaseConnector extends Connector{
             for(Query query : this.queries){
                 switch (query.getQueryType()) {
                     case TEMPORAL:
+                        System.out.println("Found Temporal Query");
                         start = ((List<Date>)query.get(Parameter.START)).get(0);
                         if(query.containsKey(Parameter.END)) {
                             end = ((List<Date>)query.get(Parameter.END)).get(0);
                         }
                         break;
                     case ATTRIBUTAL:
+                        System.out.println("Found Attribute Query");
                         pubFilterList = (List<String>) query.get(Parameter.FILTER);
                         break;
                     case EVENT:
+                        System.out.println("Found Event Query");
                         eventFilterList = (List <String>) query.get(Parameter.EVENT_FILTER);
                         break;
                 }
@@ -92,12 +95,12 @@ public class EventDatabaseConnector extends Connector{
             String sqlQuery = this.createSQLQuery(start, end, pubFilterList, eventFilterList);
             executeQuery(sqlQuery);
             
-            this.finish();
-            this.notifyObservers();
+            
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(EventDatabaseConnector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+        this.finish();
+        this.notifyObservers();
         
     }
    
@@ -131,6 +134,7 @@ public class EventDatabaseConnector extends Connector{
                     } else {
                         filterPubSQL += " AND beer_price <= "+value;
                     }
+                    
                 }
                 if (s.equalsIgnoreCase("hasHappyHour")) {
                     if (filterPubSQL.endsWith("WHERE ")) {
@@ -142,7 +146,6 @@ public class EventDatabaseConnector extends Connector{
                 if (s.equalsIgnoreCase("hasEntryFee")) {
                     entryFee = true;
                 }
-                
             }
             filterPubSQL += ")";
         }
@@ -155,7 +158,7 @@ public class EventDatabaseConnector extends Connector{
                 if (s.contains("eventType")) {
                     String value = s.split("=")[1];
                     if (filterEventSQL.endsWith("WHERE ")) {
-                        filterEventSQL += "type = '"+value+"'";
+                        filterEventSQL += "'"+value+"' LIKE type";
                     } else {
                         filterEventSQL += " AND '"+value+"' like type";
                     }
@@ -167,12 +170,13 @@ public class EventDatabaseConnector extends Connector{
                         filterEventSQL += " AND entry_fee";
                     }
                 }
+                filterEventSQL += " AND event";
             }
             filterEventSQL += ")";
         }
         
         sql = "SELECT * FROM "+filterPubSQL+" AS pub_select NATURAL INNER JOIN "+filterEventSQL+" AS event_select NATURAL INNER JOIN opened WHERE pub_select.pub_ref = event_select.pub_ref"+ generalFilterSQL + "AND start_time::date ='"+ dateFormatter.format(start)+"'";
-        
+        System.out.println(sql);
         return sql;
     }
     
@@ -330,7 +334,7 @@ public class EventDatabaseConnector extends Connector{
             
         }}
         
-        System.out.print(osmDoc.toString());
+       // System.out.print(osmDoc.toString());
         return osmDoc;
     }
     

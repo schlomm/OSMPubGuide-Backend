@@ -95,6 +95,7 @@ public class QueryCreator {
                         attribute.put(key, overpass_attr_list);
                     }
                     if (db_attr_list.size() > 0) {
+                        System.out.println("We have created a ATTRIBUTAL QUERY");
                         db_attr.put(key, db_attr_list);
                     }
                     break;
@@ -122,6 +123,7 @@ public class QueryCreator {
         if(!space.isEmpty()) queryList.add(space);
         if(!time.isEmpty()) queryList.add(time);
         if(!attribute.isEmpty()) queryList.add(attribute);
+        if(!db_attr.isEmpty()) queryList.add(db_attr);
         if(!eventAttr.isEmpty()) queryList.add(eventAttr);
         
         return queryList;

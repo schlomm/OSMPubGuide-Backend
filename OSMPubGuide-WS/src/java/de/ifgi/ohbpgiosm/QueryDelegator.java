@@ -84,15 +84,20 @@ public class QueryDelegator implements Runnable {
                     break;
                 case ATTRIBUTAL:
                     //if it contains beer prize add to event 
+                    System.out.println("Adding Attribute Query to DBConnector");
                     List<String> list = (List<String>)q.get(Parameter.FILTER);
+                    boolean containedValues=false;
                     for (String s : list) {
-                        if (s == "maximumBeerPrice" || s == "hasHappyHour" || s == "hasEntryFee") {
+                        System.out.println(s);
+                        if (s.contains("maximumBeerPrice") || s.contains("hasHappyHour") || s.contains("hasEntryFee")) {
                             this.eventdb_con.addQuery(q);
+                            containedValues=true;
                             break;
                         }
                     }
-                    this.overpass_con.addQuery(q);
-                    //TODO check with Christopher that he is prepared
+                    if (!containedValues) {
+                        this.overpass_con.addQuery(q);
+                    }
                     break;
             }
         }

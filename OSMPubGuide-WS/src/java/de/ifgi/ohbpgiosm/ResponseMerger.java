@@ -190,7 +190,6 @@ public class ResponseMerger implements Observer {
     }
     
     private long getRelationLocationID(RelationType rt, OsmDocument doc) throws XmlException {
-        System.out.println("search for relation with id: "+rt.getId());
         XmlObject[] xmls = doc.selectPath("/osm/relation[@id="+rt.getId()+"]/member[@role='location']");
         
         if (xmls.length > 0) {
