@@ -1,4 +1,5 @@
 <?php
+if ( isset($_GET['pass']) && $_GET['pass'] == '' ) {
 	$db_connection = pg_connect("") or die('Connection failed: ' . pg_last_error());
 	
 	$osm_api_link = 'http://api.openstreetmap.org/api/0.6/';
@@ -53,29 +54,37 @@
 			}
 		}
 		
+		// if opening hours were found ...
 		if ( $opening_hours != null ) {
+			// ... split the string by the semicolons to get the opening hours for all week days available
 			$days = explode(';', $opening_hours);
 			
 			$open = array();
 			
+			// Next, split by commas to get the different opening hours for each day
 			foreach ( $days as $day ) {
 				$times = explode(',', $day);
 				$week_day = '';
+				
+				// Array to store all opening hours in an own data format
 				$opening_times = array();
 				
 				foreach($times as $time) {
 					$time = trim($time);
 					
+					// The String for each day is splitted by spaces to separate the week days from the opening hours
 					if ( $week_day == '' ) {
 						if ( strpos($time, ' ') ) {
 							$week_day = explode(' ', $time)[0];
 							$times = explode(' ', $time)[1];
 							
+							// To get the start and the end of the opening hours, split the opening hours string at the "-"
 							if ( strpos($times, '-') ) {
 								$start_open = explode('-', $times)[0];
 								$end_open = explode('-', $times)[1];
 								$opening_times[] = array($start_open, $end_open);
 							}
+							// Open end opening hours (indicated by the plus) get changed to opened till 3 a.m.
 							else if ( strpos($times, '+') ) {
 								$times = str_replace('+', '', $times);
 								$start_open = $times;
@@ -84,12 +93,15 @@
 							}
 						}
 					}
+					// If no week day is found, use the week day from the last one
 					else {
+						// To get the start and the end of the opening hours, split the opening hours string at the "-"
 						if ( strpos($time, '-') ) {
 							$start_open = explode('-', $time)[0];
 							$end_open = explode('-', $time)[1];
 							$opening_times[] = array($start_open, $end_open);
 						}
+						// Open end opening hours (indicated by the plus) get changed to opened till 3 a.m.
 						else if ( strpos($time, '+') ) {
 							$times = str_replace('+', '', $time);
 							$start_open = $time;
@@ -99,31 +111,42 @@
 					}
 				}
 				
+				// For multiple week days (i.e. Mo-Fr), split the week day string at the "-"
 				if ( strpos($week_day, '-') ) {
+					// Use numbers instead of strings for the week days (i.e. 1 for Monday)
 					$first = $week_days[explode('-', $week_day)[0]];
 					$second = $week_days[explode('-', $week_day)[1]];
 					$current = $first;
+					
+					// Copy the opening hours for the days without a specificly declared week days in between to the data array (i.e. Tue, Wed, Thu for Mo-Fr)
 					while ( $current <= $second ) {
 						$open[$current] = $opening_times;
 						$current++;
 					}
 				}
+				// Copy all opening hours for a single week day to the data array
 				else {
 					if ( isset($week_days[$week_day]) ) {
+						// Use numbers instead of strings for the week days (i.e. 1 for Monday)
 						$number_week_day = $week_days[$week_day];
 						$open[$number_week_day] = $opening_times;
 					}
 				}
 			}
 			
+			// Get the event_id for the opening hours of each bar
 			$query = pg_query('SELECT event_id FROM temporal_event WHERE pub_ref = \'' . $osm_node_id . '\' AND type = \'opening_hours\'');
+			
+			// Delete all opened-events for this event_id
 			while ( $row = pg_fetch_array($query) ) {
 				pg_query('DELETE FROM opened WHERE event_id = '. $row['event_id'] .';');
 			}
 			
+			// Insert data from the array to the database by iterating over all seven week days
 			$current_week_day = date('N');
 			for ( $i = 1; $i <= 7; $i++ ) {
 				if ( isset($open[$i]) ) {
+					// Get all opening hours for this pub and this week day by iterating over next the column in the data array
 					for ( $j = 0; $j < sizeof($open[$i]); $j++ ) {
 						$row = pg_fetch_array(pg_query('SELECT event_id FROM temporal_event WHERE pub_ref = \'' . $osm_node_id . '\' AND type = \'opening_hours\''));
 						$event_id = $row['event_id'];
@@ -149,4 +172,5 @@
 			}
 		}
 	}
+}
 ?>

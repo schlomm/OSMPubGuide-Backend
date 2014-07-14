@@ -48,7 +48,9 @@ public class EventDBTest extends EventDatabaseConnector{
         List<String> filter = new ArrayList<String>();
         filter.add("maximumBeerPrice=3.0");
         //filter.add("hasHappyHour");
-
+        
+        String query = createSQLQuery(start, end, null, null);
+        executeQuery(query);
     }
     
     @Test

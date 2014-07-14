@@ -17,6 +17,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -49,6 +50,7 @@ public class EventDatabaseConnector extends Connector{
     static final String USER = dbCredentials.getProperty("db_user");
     
     private OsmDocument response;
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
     @Override
     public OsmDocument getResponse() {
@@ -85,12 +87,7 @@ public class EventDatabaseConnector extends Connector{
                         eventFilterList = (List <String>) query.get(Parameter.EVENT_FILTER);
                         break;
                 }
-                
-                // TODO case differentiation based on existing start, end .. parameters
-                // which SQL statement is created and send to the DB
-                
             }
-            
             
             String sqlQuery = this.createSQLQuery(start, end, pubFilterList, eventFilterList);
             executeQuery(sqlQuery);
@@ -176,7 +173,9 @@ public class EventDatabaseConnector extends Connector{
         }
         
         sql = "SELECT * FROM "+filterPubSQL+" AS pub_select NATURAL INNER JOIN "+filterEventSQL+" AS event_select NATURAL INNER JOIN opened WHERE pub_select.pub_ref = event_select.pub_ref"+ generalFilterSQL + "AND start_time::date ='"+ dateFormatter.format(start)+"'";
-        System.out.println(sql);
+
+        logger.debug("SQL query string: " + sql);
+        
         return sql;
     }
     
@@ -199,11 +198,6 @@ public class EventDatabaseConnector extends Connector{
             logger.debug("Query executed.");
             
             this.response = resultSetToOsmDoc(rs);
-            
-            //statement = connection.createStatement();
-            //ResultSet rs2 = statement.executeQuery(SELECT start_time, end_time  FROM pub JOIN temporal_event ON pub.pub_ref = temporal_event.pub_ref JOIN opened ON temporal_event.event_id = opened.event_id WHERE pub.pub_ref =" +  pubId.toString());
-            logger.debug("Query executed.");
-            
             
         } catch (SQLException se) {
             //Handle errors for JDBC
@@ -232,7 +226,7 @@ public class EventDatabaseConnector extends Connector{
     }  
     
     
-    protected OsmDocument resultSetToOsmDoc(ResultSet rs) throws SQLException{
+    protected OsmDocument resultSetToOsmDoc(ResultSet rs) throws SQLException, ParseException{
         OsmDocument osmDoc = OsmDocument.Factory.newInstance();
         OsmType osmElem = osmDoc.addNewOsm();       
         
@@ -265,7 +259,11 @@ public class EventDatabaseConnector extends Connector{
                 Boolean hasHappyHour = rs.getBoolean("happy_hour");
                 TagType happyHourTag = pubNode.addNewTag();
                 happyHourTag.setK("happy_hour");
-                happyHourTag.setV(String.valueOf(hasHappyHour));
+                if (hasHappyHour){
+                    happyHourTag.setV("yes");
+                } else {
+                    happyHourTag.setV("no");
+                }
             }       
             
             if (columnNameList.contains("event")){
@@ -275,17 +273,27 @@ public class EventDatabaseConnector extends Connector{
                     int eventId = rs.getInt("event_id");
                     eventType.setId(eventId);
                     if(columnNameList.contains("start_time")){
-                        Calendar cal = new GregorianCalendar();
-                        Date startTime = rs.getDate("start_time", cal);
-                        cal.setTime(startTime);
-                        eventType.setStart(cal);
+                        try {
+                            Calendar cal = new GregorianCalendar();
+                            String startTime = rs.getString("start_time");
+                            Date startDate = dateFormat.parse(startTime);
+                            cal.setTime(startDate);
+                            eventType.setStart(cal);
+                        } catch (ParseException ex) {
+                            java.util.logging.Logger.getLogger(EventDatabaseConnector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                        }
                     }
                     
                     if (columnNameList.contains("end_time")){
-                        Calendar cal = new GregorianCalendar();
-                        Date endTime = rs.getDate("end_time", cal);
-                        cal.setTime(endTime);
-                        eventType.setEnd(cal);
+                        try {
+                            Calendar cal = new GregorianCalendar();
+                            String endTime = rs.getString("end_time");
+                            Date endDate = dateFormat.parse(endTime);
+                            cal.setTime(endDate);
+                            eventType.setEnd(cal);
+                        } catch (ParseException ex) {
+                            java.util.logging.Logger.getLogger(EventDatabaseConnector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                        }
                     }
                     
                     if (columnNameList.contains("name")){
@@ -326,15 +334,16 @@ public class EventDatabaseConnector extends Connector{
                     eventMemberType.setRole("event");
                     eventMemberType.setType(RelationReferType.EVENT);
                 }
-            
-            DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");    
+              
             TagType tucTag = pubNode.addNewTag();
+            String endTime = rs.getString("end_time");
             tucTag.setK("tuc");
-            tucTag.setV(df.format(rs.getDate("end_time")));
-            
+            tucTag.setV(endTime);
         }}
         
-       // System.out.print(osmDoc.toString());
+
+        logger.debug(osmDoc.toString());
+
         return osmDoc;
     }
     
@@ -342,7 +351,7 @@ public class EventDatabaseConnector extends Connector{
          Calendar cal = new GregorianCalendar();
          Date now = Calendar.getInstance().getTime();
          long difference = (now.getTime() - end.getTime()) / 60000;
-         logger.debug(String.valueOf(difference));
+         logger.debug("Time difference:" + String.valueOf(difference));
          return difference; 
 
     }
