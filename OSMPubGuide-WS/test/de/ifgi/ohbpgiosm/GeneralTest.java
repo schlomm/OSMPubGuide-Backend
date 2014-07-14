@@ -6,8 +6,22 @@
 
 package de.ifgi.ohbpgiosm;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.net.MalformedURLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import noNamespace.EventType;
 import noNamespace.MemberType;
 import noNamespace.NodeType;
@@ -19,6 +33,8 @@ import noNamespace.TagType;
 import org.apache.xmlbeans.XmlException;
 import org.apache.xmlbeans.XmlObject;
 import org.junit.Test;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -30,6 +46,50 @@ public class GeneralTest {
     }
 
     @Test
+    public void FinalTest() throws IOException, ParserConfigurationException, MalformedURLException, SAXException {
+
+        String testUrl1 = "http://giv-openpubguide.uni-muenster.de:8080/"
+                        + "OSMPubGuide-WS/tosm/query?bbox=51.94892,7.5880337,51.973354,7.6595306";
+
+        String testUrl2 = "http://giv-openpubguide.uni-muenster.de:8080/OSMPubGuide-WS/tosm/query?"
+                + "bbox=51.94892,7.5880337,51.973354,7.6595306&"
+                + "start=2014-07-15T21:00:00&end=2014-07-15T23:00:00&";
+
+        
+        Document response;
+        try {
+            response = HttpClient.getInstance().sendGetRequest(testUrl1);
+            saveAsFile(stringify(response));
+        } catch (TransformerException ex) {
+            Logger.getLogger(GeneralTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private String stringify(Document result) throws TransformerConfigurationException, TransformerException {
+
+        Transformer transformer = TransformerFactory.newInstance().newTransformer();
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+        StreamResult res = new StreamResult(new StringWriter());
+        DOMSource source = new DOMSource(result);
+        transformer.transform(source, res);
+
+        String xmlOutput = res.getWriter().toString();
+        return xmlOutput;
+    }
+    
+    public void saveAsFile(String response) {
+        try {
+            File file = new File("/home/brasko/testresults/" + System.currentTimeMillis() + "out.xml");
+            FileWriter fstream = new FileWriter(file);
+            BufferedWriter out = new BufferedWriter(fstream);
+            out.write(response);
+            out.close();
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+    
     public void testFindNode() {
         OsmDocument doc = OsmDocument.Factory.newInstance();
         OsmType osm =  doc.addNewOsm();
