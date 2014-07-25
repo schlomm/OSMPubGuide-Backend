@@ -2,6 +2,19 @@ OSMPubGuide-Backend
 =======
 This repository is used to create an OSM based Pubguide, which deals with the aspects of an integration of temporal data. A customized API will be established, which will be used to provide additional, use case adapated information. On top of that, those temporal information should be stored within a database, which should be related to up-to-date OSM based information. A TileServer will serve Tiles, which focusses on specific entities.
 
+# How to start - Check the Wiki :)
+
+To get started with the OHBPGIOSM Backend Part, please refer to this wiki. You will find a detailed setup and configuration guide as well as some information about the general idea and architecture.
+
+1. [System Overview (Idea, About, Architecture, Principles)](https://github.com/schlomm/OSMPubGuide-Backend/wiki/1.-System-Overview-(Ideas,-About,-Architecture,-Principles))
+1. [Webserver Setup and Configuration Guide](https://github.com/schlomm/OSMPubGuide-Backend/wiki/2.-Apache-Webserver-Installation-and-Configuration)
+1. [Database Setup and Configuration Guide](https://github.com/schlomm/OSMPubGuide-Backend/wiki/3.-postgreSQL-Installation-and-Configuration)
+1. [Tomcat 7 Installation and Configuration Guide](https://github.com/schlomm/OSMPubGuide-Backend/wiki/4.-Tomcat-7-Installation-and-Configuration)
+1. [TileMill 2 Installation and Configuration](https://github.com/schlomm/OSMPubGuide-Backend/wiki/5.-TileMill-2-Installation-and-Configuration)
+1. [Vector Tiles via Docker Image](https://github.com/schlomm/OSMPubGuide-Backend/wiki/6.-Vectortiles-via-Docker-Container)
+1. [API-Documentation](https://github.com/schlomm/OSMPubGuide-Backend/wiki/7.-API-documentation)
+1. [Database Connection with JDBC and Netbeans](https://github.com/schlomm/OSMPubGuide-Backend/wiki/9.-Postgres-Database-Connection-with-JDBC-and-Netbeans).
+
 ----------
 
 ### Team Members:
