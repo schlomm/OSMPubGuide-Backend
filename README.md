@@ -48,7 +48,6 @@ This repository is used to create an OSM based Pubguide, which deals with the as
 
 ### Architecture-Draft
 ![System Overview][16]
-
 ----------
 
 
@@ -110,6 +109,6 @@ This repository is used to create an OSM based Pubguide, which deals with the as
   [13]: https://docs.google.com/document/d/13aev6uE7L1icVZ2HV3IuSwRohakGlC3WVepFitKhlbE/edit
   [14]: https://docs.google.com/document/d/1P2jYhSZgxpkyV6LYOW1U9PtftiHgTfPnudfiNufbOow/edit
   [15]: https://docs.google.com/spreadsheet/ccc?key=0AjGDgpE0LC_sdGlNcUZwaXBmS2lzeHdlaXE5MHdzNmc&usp=drive_web#gid=1
-  [16]: http://i.imgur.com/ycafHU6.png
+  [16]: http://i.imgur.com/QjrW6RW.jpg
   [17]: https://github.com/MarkusKonk/OSMPubGuide
   [18]: https://github.com/tobivankenobi
